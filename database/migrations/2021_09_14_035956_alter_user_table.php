@@ -16,8 +16,8 @@ class AlterUserTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('username', 100)->after('name')->unique();
             $table->string('phone_number')->after('email')->nullable();
-            $table->date('brithday')->after('phone_number')->nullable();
-            $table->string('avatar')->after('brithday')->nullable();
+            $table->date('birthday')->after('phone_number')->nullable();
+            $table->string('avatar')->after('birthday')->nullable();
             $table->string('address')->after('avatar')->nullable();
             $table->text('about_me')->after('address')->nullable();
             $table->softDeletes();
@@ -34,10 +34,10 @@ class AlterUserTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('username');
             $table->dropColumn('phone_number');
-            $table->dropColumn('brithday');
+            $table->dropColumn('birthday');
             $table->dropColumn('avatar');
             $table->dropColumn('address');
-            $table->dropColumn('aboutMe');
+            $table->dropColumn('about_me');
             $table->dropSoftDeletes();
         });
     }

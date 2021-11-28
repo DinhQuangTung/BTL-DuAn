@@ -32,7 +32,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/google', [LoginController::class, 'redirectToGoogle'])->name('google.url');
 Route::get('/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
-Route::resource('courses', CourseController::class)->only(['index', 'show']);
+Route::resource('courses', CourseController::class);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('course-users', CourseUserController::class)->only(['store', 'destroy']);

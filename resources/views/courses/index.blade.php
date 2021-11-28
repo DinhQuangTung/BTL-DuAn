@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (!empty(Auth::user()) && Auth::user()->role == '1')
+        <a class="" href="{{route('courses.create')}}">create</a>
+    @endif
     <div class="all-course-page w-100 d-flex flex-column">
         <form action="{{ route('courses.index') }}" method="get">
             <div class="container d-flex">
