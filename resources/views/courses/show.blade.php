@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('content')
+    <a class="" href="{{ route('courses.edit', [$course]) }}">edit</a>
     @include('components.direction', [$course->id])
     <div class="detail-course container-fluid bg-light">
         <div class="container p-0">
             <div class="row">
                 <div class="col-md-8 p-0">
-                    <img src="{{ $course->logo_path }}" alt="course-logo" class="course-logo">
+                    <img src="{{ asset($course->logo_path) }}" alt="course-logo" class="course-logo">
                 </div>
                 <div class="col-md-4 pr-0">
                     <div class="descriptions-course">

@@ -13,7 +13,7 @@ class Course extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'description', 'logo_path', 'learn_times', 'lesson_learned'
+        'title', 'description', 'logo_path', 'learn_times', 'lesson_learned', 'price'
     ];
 
     public function lessons()
@@ -157,5 +157,45 @@ class Course extends Model
             }
         }
         return $query;
+    }
+
+    public function createCourse($request)
+    {
+        if (!empty($request['course_image'])) {
+            $image = $request->file('course_image');
+            $path = $image->hashName();
+            $request->file('course_image')->storeAs('public/logo_course', 'logo_' . $path, 'local');
+            $logoPath = 'storage/logo_course/logo_' . $path;
+        } else {
+            $logoPath = null;
+        }
+
+        Course::create([
+            'title' => $request['course_title'],
+            'description' => $request['course_description'],
+            'learn_times' => $request['course_time'],
+            'price' => $request['course_price'],
+            'logo_path' => $logoPath,
+        ]);
+    }
+
+    public function updateCourse($request)
+    {
+        if (!empty($request['course_image'])) {
+            $image = $request->file('course_image');
+            $path = $image->hashName();
+            $request->file('course_image')->storeAs('public/logo_course', 'logo_' . $path, 'local');
+            $logoPath = 'storage/logo_course/logo_' . $path;
+        } else {
+            $logoPath = null;
+        }
+
+        Course::update([
+            'title' => $request['course_title'],
+            'description' => $request['course_description'],
+            'learn_times' => $request['course_time'],
+            'price' => $request['course_price'],
+            'logo_path' => $logoPath,
+        ]);
     }
 }

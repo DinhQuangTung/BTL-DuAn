@@ -2,7 +2,7 @@
     <div class="card customize-list-courses-card">
         <div class="card-body">
             <div class="course-card-top">
-                <img src="{{ $course->logo_path }}" alt="course img" class="course-card-top-img">
+                <img src="{{ asset($course->logo_path) }}" alt="course img" class="course-card-top-img">
                 <div class="course-card-top-content">
                     <a href="{{ route('courses.show', [$course->id]) }}" class="course-card-top-content-title">{{ $course->title }}</a>
                     <div class="course-card-top-content-description">{{ $course->description }}</div>
