@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DocumentUser;
+use App\Models\Lesson;
 
 class Lesson extends Model
 {
@@ -14,7 +15,7 @@ class Lesson extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'course_id', 'description', 'requirement', 'content'
+        'title', 'course_id', 'description', 'requirement', 'content', 'image'
     ];
 
     public function course()
@@ -59,5 +60,48 @@ class Lesson extends Model
             $query->where('course_id', $course->id);
         }
         return $query;
+    }
+
+    public function createLesson($request, $courseId)
+    {
+        if (!empty($request['lesson_image'])) {
+            $image = $request->file('lesson_image');
+            $path = $image->hashName();
+            $request->file('lesson_image')->storeAs('public/logo_lesson', 'logo_' . $path, 'local');
+            $logoPath = 'storage/logo_lesson/logo_' . $path;
+        } else {
+            $logoPath = null;
+        }
+
+        Lesson::create([
+            'title' => $request['lesson_title'],
+            'image' => $logoPath,
+            'requirement' => $request['lesson_requirement'],
+            'course_id' => $courseId,
+            'content' => $request['lesson_content'],
+            'learn_time' => $request['learn_time']
+        ]);
+    }
+
+    public function updateLesson($request, $courseId)
+    {
+        if (!empty($request['lesson_image'])) {
+            $image = $request->file('lesson_image');
+            $path = $image->hashName();
+            $request->file('lesson_image')->storeAs('public/logo_lesson', 'logo_' . $path, 'local');
+            $logoPath = 'storage/logo_lesson/logo_' . $path;
+        } elseif (!empty($this->image)) {
+            $logoPath = $this->image;
+        } else {
+            $logoPath = null;
+        }
+
+        Lesson::update([
+            'title' => $request['lesson_title'],
+            'image' => $logoPath,
+            'requirement' => $request['lesson_requirement'],
+            'content' => $request['lesson_content'],
+            'learn_time' => $request['learn_time']
+        ]);
     }
 }

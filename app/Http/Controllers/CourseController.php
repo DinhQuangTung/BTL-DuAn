@@ -25,7 +25,7 @@ class CourseController extends Controller
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
                 return view('courses.create');
             } else {
-                echo "ban k co quyen truy cap" ;
+                echo "ban k co quyen truy cap";
             }
         } else {
             echo "ban k co quyen truy cap";
@@ -45,6 +45,7 @@ class CourseController extends Controller
     {
         $lessons = Lesson::search($request, $course)->paginate(config('config.pagination'), ['*'], 'lesson_page');
         $reviews = $course->reviews()->orderBy('id', 'desc')->paginate(config('config.pagination'), ['*'], 'review_page');
+        
         return view('courses.show', compact('course', 'lessons', 'reviews'));
     }
 
@@ -54,10 +55,10 @@ class CourseController extends Controller
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
                 return view('courses.edit', compact('course'));
             } else {
-                echo "ban k co quyen truy cap" ;
+                echo "ban k co quyen truy cap";
             }
         } else {
-            echo "ban k co quyen truy cap" ;
+            echo "ban k co quyen truy cap";
         }
     }
 
@@ -66,5 +67,12 @@ class CourseController extends Controller
         $course->updateCourse($request);
 
         return redirect()->route('courses.show', [$course])->with('success', 'Course updated successfully');
+    }
+
+    public function destroy(Course $course)
+    {
+        Course::where('id', $course->id)->delete();
+
+        return redirect()->route('courses.index');
     }
 }

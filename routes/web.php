@@ -37,7 +37,7 @@ Route::resource('courses', CourseController::class);
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('course-users', CourseUserController::class)->only(['store', 'destroy']);
     Route::resource('reviews', ReviewController::class)->only(['store']);
-    Route::resource('course.lessons', LessonController::class)->only(['show']);
+    Route::resource('course.lessons', LessonController::class);
     Route::resource('users', UserController::class)->only(['show', 'update']);
     
     Route::post('/documents/learned', [DocumentController::class, 'learn']);

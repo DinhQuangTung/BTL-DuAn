@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="form-create-course mb-4 container">
-        <form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('course.lessons.store', [$course->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row m-0 p-0">
                 <div class="col-md-6 mt-3 pl-0">
                     <div class="form-group">
-                        <label for="courseTitle" class="course-label">Title:</label>
-                        <input type="text" name="course_title" class="form-control" id="courseTitle" value="" required>
-                        @error('course_title')
+                        <label for="lessonTitle" class="course-label">Title:</label>
+                        <input type="text" name="lesson_title" class="form-control" id="lessonTitle" value="" required>
+                        @error('lesson_title')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -18,9 +18,9 @@
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
-                        <label for="courseDescription" class="course-label">Description:</label>
-                        <input type="text" name="course_description" class="form-control" id="courseDescription" value="" required>
-                        @error('course_description')
+                        <label for="lessonRequirement" class="course-label">Requirement:</label>
+                        <input type="number" name="lesson_requirement" class="form-control" id="lessonRequirement" value="" required>
+                        @error('lesson_requirement')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -29,9 +29,9 @@
                 </div>
                 <div class="col-md-6 mt-3 pl-0">
                     <div class="form-group">
-                        <label for="courseImage" class="course-label">Image:</label>
-                        <input type="file" name="course_image" id="courseImage" required>
-                        @error('course_image')
+                        <label for="lessonImage" class="course-label">Image:</label>
+                        <input type="file" name="lesson_image" id="lessonImage" required>
+                        @error('lesson_image')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -40,9 +40,20 @@
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
-                        <label for="coursePrices" class="course-label">Price:</label>
-                        <input type="number" name="course_price" class="form-control" id="coursePrice" value="" required>
-                        @error('course_price')
+                        <label for="lessonContent" class="course-label">Content:</label>
+                        <input type="text" name="lesson_content" class="form-control" id="lessonContent" value="" required>
+                        @error('lesson_content')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3 pl-0">
+                    <div class="form-group">
+                        <label for="lessonLearnTime" class="course-label">Learn Time:</label>
+                        <input type="text" name="lesson_learn_time" class="form-control" id="lessonLearnTime" value="" required>
+                        @error('lesson_learn_time')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

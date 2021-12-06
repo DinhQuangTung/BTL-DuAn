@@ -2,7 +2,7 @@
     <div class="row h-100">
         @if (empty($course->is_joined) == true)
             <div class="col-md-12 d-flex align-items-center">
-                <a href="" class="lesson-items-title">
+                <a href=" {{ ( !empty(Auth::user()) && Auth::user()->id == $course->teacher_id) ? route('course.lessons.show', [$course->id, $lesson->id]) : '' }} " class="lesson-items-title">
                     {{ ($lessons->currentPage() - 1)*config('config.pagination') + $key + 1 }}. {{ $lesson->title }}
                 </a>
             </div>

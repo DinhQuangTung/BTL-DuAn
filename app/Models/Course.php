@@ -13,7 +13,7 @@ class Course extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'description', 'logo_path', 'learn_times', 'lesson_learned', 'price'
+        'title', 'description', 'logo_path', 'learn_times', 'lesson_learned', 'price', 'teacher_id'
     ];
 
     public function lessons()
@@ -173,9 +173,9 @@ class Course extends Model
         Course::create([
             'title' => $request['course_title'],
             'description' => $request['course_description'],
-            'learn_times' => $request['course_time'],
             'price' => $request['course_price'],
             'logo_path' => $logoPath,
+            'teacher_id' => Auth::user()->id
         ]);
     }
 
@@ -186,6 +186,8 @@ class Course extends Model
             $path = $image->hashName();
             $request->file('course_image')->storeAs('public/logo_course', 'logo_' . $path, 'local');
             $logoPath = 'storage/logo_course/logo_' . $path;
+        } elseif (!empty($this['logo_path'])) {
+            $logoPath = $this['logo_path'];
         } else {
             $logoPath = null;
         }
@@ -193,7 +195,6 @@ class Course extends Model
         Course::update([
             'title' => $request['course_title'],
             'description' => $request['course_description'],
-            'learn_times' => $request['course_time'],
             'price' => $request['course_price'],
             'logo_path' => $logoPath,
         ]);
