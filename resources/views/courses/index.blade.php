@@ -82,11 +82,11 @@
                         </div>
                         <div class="col-lg-2 col-md-6 pl-lg-0 form-group">
                             <select class="get-value input-change form-control form-control-custom select-tag  select-2" id="selectTag" name="tag" style="width:100%">
-                            <option value="">Tags</option>
-                            @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}" @if ($tag->id == request('tag')) selected @endif>{{ $tag->name }}
-                                </option>
-                            @endforeach
+                                <option value="">Tags</option>
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}" @if ($tag->id == request('tag')) selected @endif>{{ $tag->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 

@@ -50,6 +50,18 @@
                         @enderror
                     </div>
                 </div>
+                <div class="col-md-6 mt-3 pl-0">
+                    <div class="form-group d-flex">
+                        <label for="courseDescription" class="course-label mr-2">Tags:</label>
+                        <select class="get-value input-change form-control form-control-custom select-tag  select-2" id="courseTag" name="course_tag" style="width:100%" multiple>
+                            <option value="">Tags</option>
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}" @if ($tag->id == request('tag')) selected @endif>{{ $tag->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="col-md-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-update button-submit">Update</button>
                 </div>

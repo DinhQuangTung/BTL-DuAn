@@ -15,7 +15,7 @@ class Lesson extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'course_id', 'description', 'requirement', 'content', 'image'
+        'title', 'course_id', 'description', 'requirement', 'content', 'image', 'learn_time'
     ];
 
     public function course()
@@ -79,7 +79,7 @@ class Lesson extends Model
             'requirement' => $request['lesson_requirement'],
             'course_id' => $courseId,
             'content' => $request['lesson_content'],
-            'learn_time' => $request['learn_time']
+            'learn_time' => $request['lesson_learn_time']
         ]);
     }
 
@@ -101,7 +101,7 @@ class Lesson extends Model
             'image' => $logoPath,
             'requirement' => $request['lesson_requirement'],
             'content' => $request['lesson_content'],
-            'learn_time' => $request['learn_time']
+            'learn_time' => $request['lesson_learn_time']
         ]);
     }
 }

@@ -5,12 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\DocumentUser;
 use App\Models\Lesson;
 use App\Models\Course;
+use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
-    
+    public function create(Lesson $lesson)
+    {
+        return view('lessons.documents.create', compact('lesson'));
+    }
+
+    public function store(Request $request, Lesson $lesson)
+    {
+        $course = $lesson->course;
+
+        $newDocument = new Document();
+        $newDocument->createDocument($request, $lesson->id);
+
+        return redirect()->route('course.lessons.show', [$course, $lesson])->with('success', 'Document created successfully!');
+    }
+
     public function learn(Request $request)
     {
         $checkLearned = empty(DocumentUser::query()->checkLearned($request, Auth::id())->first());

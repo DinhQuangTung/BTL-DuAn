@@ -16,6 +16,7 @@ class CourseController extends Controller
         $teachers = User::where('role', config('config.role.teacher'))->get();
         $courses = Course::filter($request)->paginate(config('config.pagination'));
         $tags = Tag::get();
+
         return view('courses.index', compact('courses', 'teachers', 'tags'));
     }
 
@@ -23,7 +24,9 @@ class CourseController extends Controller
     {
         if (!empty(Auth::user())) {
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
-                return view('courses.create');
+                $tags = Tag::get();
+                
+                return view('courses.create', compact('tags'));
             } else {
                 echo "ban k co quyen truy cap";
             }
@@ -45,15 +48,18 @@ class CourseController extends Controller
     {
         $lessons = Lesson::search($request, $course)->paginate(config('config.pagination'), ['*'], 'lesson_page');
         $reviews = $course->reviews()->orderBy('id', 'desc')->paginate(config('config.pagination'), ['*'], 'review_page');
-        
-        return view('courses.show', compact('course', 'lessons', 'reviews'));
+        $allTags = Tag::all();
+
+        return view('courses.show', compact('course', 'lessons', 'reviews', 'allTags'));
     }
 
     public function edit(Course $course)
     {
         if (!empty(Auth::user())) {
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
-                return view('courses.edit', compact('course'));
+                $tags = Tag::get();
+                
+                return view('courses.edit', compact('course', 'tags'));
             } else {
                 echo "ban k co quyen truy cap";
             }

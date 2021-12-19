@@ -85,6 +85,7 @@
                                             {!! $lessons->appends($_GET)->links() !!}
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="pillsTeacher" role="tabpanel" aria-labelledby="pills-teacher-tab">
@@ -131,6 +132,25 @@
                                         <button type="submit" class="random-tag-name p-0 mr-1">#{{ $tag->name }}</button>  
                                     </form>                                  
                                 @endforeach
+                                @if (!empty(Auth::user()) && Auth::user()->role == 1 && Auth::id() == $course->teacher_id)
+                                    <form class="d-flex" action="{{ route('course-tags.store') }}" method="POST">
+                                        @csrf
+                                        <select class="get-value input-change form-control form-control-custom select-tag d-none" id="selectTag" name="add_tag" style="width:100%">
+                                            <option value="">Tags</option>
+                                            @foreach ($allTags as $tag)
+                                                <option value="{{ $tag->id }}" @if ($tag->id == request('tag')) selected @endif>{{ $tag->name }}
+                                                </option>
+                                            @endforeach 
+                                        </select>
+                                        <a class="btn btn-update button-submit w-auto" id="addTag">
+                                            <span>+</span>
+                                        </a>
+                                        <input hidden="true" type="number" value="{{ $course->id }}" name="course_id">
+                                        <button class="btn btn-update button-submit w-auto d-none" id="summitTag">
+                                            <span>Add</span>
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                             <div class="data price d-flex align-items-center">
                                 <i class="far fa-money-bill-alt"></i>

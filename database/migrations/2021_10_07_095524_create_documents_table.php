@@ -16,10 +16,10 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('lesson_id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('type')->nullable();
-            $table->string('logo_path');
-            $table->string('file_path');
+            $table->string('logo_path')->nullable();
+            $table->string('file_path')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

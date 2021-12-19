@@ -9,6 +9,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CourseUserController;
+use App\Http\Controllers\CourseTagController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\AdminController;
@@ -36,10 +37,12 @@ Route::resource('courses', CourseController::class);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('course-users', CourseUserController::class)->only(['store', 'destroy']);
+    Route::resource('course-tags', CourseTagController::class)->only(['store']);
     Route::resource('reviews', ReviewController::class)->only(['store']);
     Route::resource('course.lessons', LessonController::class);
     Route::resource('users', UserController::class)->only(['show', 'update']);
-    
+    Route::resource('lessons.documents', DocumentController::class);
+
     Route::post('/documents/learned', [DocumentController::class, 'learn']);
 });
 
