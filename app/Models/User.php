@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
     use SoftDeletes;
-    
+
     const ROLE_STUDENT = 0;
     const ROLE_TEACHER = 1;
     const ROLE_ADMIN = 2;
@@ -109,9 +110,17 @@ class User extends Authenticatable
 
     public function updateAvatar($request, $user)
     {
-        $request->file('profile_avatar')->storeAs('public/avatars', 'avatar_' . $user->username . '.png', 'local');
-        $avatarPath = 'storage/avatars/avatar_' . $user->username . '.png';
-        $user->avatar = $avatarPath;
+//        $request->file('profile_avatar')->storeAs('public/avatars', 'avatar_' . $user->username . '.png', 'local');
+//        $avatarPath = 'storage/avatars/avatar_' . $user->username . '.png';
+//        $path = $request->file('profile_avatar')->store('avatars', 's3');
+//        Storage::disk('s3')->setVisibility($path, 'public');
+//        $avatarPath = Storage::disk('s3')->url($path);
+//        $user->avatar = $avatarPath;
+//        $user->save();
+
+        $image = $request->file('profile_avatar');
+        $path = Storage::disk('s3')->put('/', $image, 'public');
+        $user->avatar = Storage::disk('s3')->url($path);
         $user->save();
     }
 }
