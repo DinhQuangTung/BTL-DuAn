@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class Course extends Model
 {
@@ -163,9 +164,9 @@ class Course extends Model
     {
         if (!empty($request['course_image'])) {
             $image = $request->file('course_image');
-            $path = $image->hashName();
-            $request->file('course_image')->storeAs('public/logo_course', 'logo_' . $path, 'local');
-            $logoPath = 'storage/logo_course/logo_' . $path;
+            $path = $request->file('course_image')->store('images', 's3');
+
+            $logoPath = Storage::disk('s3')->url($path);
         } else {
             $logoPath = null;
         }
