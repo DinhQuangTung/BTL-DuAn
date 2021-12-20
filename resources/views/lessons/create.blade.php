@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="form-create-course mb-4 container">
+    <div class="form-create-course mb-4 container bg-white">
+        <h1 class="text-info">Create Lesson<hr></h1>
         <form action="{{ route('course.lessons.store', [$course->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row m-0 p-0">

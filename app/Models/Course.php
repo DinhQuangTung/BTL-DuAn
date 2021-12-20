@@ -165,7 +165,6 @@ class Course extends Model
         if (!empty($request['course_image'])) {
             $image = $request->file('course_image');
             $path = $request->file('course_image')->store('images', 's3');
-
             $logoPath = Storage::disk('s3')->url($path);
         } else {
             $logoPath = null;
@@ -184,9 +183,8 @@ class Course extends Model
     {
         if (!empty($request['course_image'])) {
             $image = $request->file('course_image');
-            $path = $image->hashName();
-            $request->file('course_image')->storeAs('public/logo_course', 'logo_' . $path, 'local');
-            $logoPath = 'storage/logo_course/logo_' . $path;
+            $path = $request->file('course_image')->store('images', 's3');
+            $logoPath = Storage::disk('s3')->url($path);
         } elseif (!empty($this['logo_path'])) {
             $logoPath = $this['logo_path'];
         } else {

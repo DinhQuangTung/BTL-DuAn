@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Lesson;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class Document extends Model
@@ -35,18 +36,16 @@ class Document extends Model
     {
         if (!empty($request['document_image'])) {
             $image = $request->file('document_image');
-            $path = $image->hashName();
-            $request->file('document_image')->storeAs('public/logo_document', 'logo_' . $path, 'local');
-            $logoPath = 'storage/logo_document/logo_' . $path;
+            $path = $request->file('document_image')->store('images', 's3');
+            $logoPath = Storage::disk('s3')->url($path);
         } else {
             $logoPath = null;
         }
 
         if (!empty($request['document_file'])) {
             $file = $request->file('document_file');
-            $path = $file->hashName();
-            $request->file('document_file')->storeAs('public/file_document', 'file_' . $path, 'local');
-            $filePath = 'storage/file_document/file_' . $path;
+            $path = $request->file('document_file')->store('documents', 's3');
+            $filePath = Storage::disk('s3')->url($path);
         } else {
             $filePath = null;
         }

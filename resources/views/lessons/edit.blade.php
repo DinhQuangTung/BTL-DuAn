@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="form-create-course mb-4 container">
+    <div class="form-create-course mb-4 container bg-white">
+        <h1 class="text-info">Edit Lesson<hr></h1>
         <form action="{{ route('course.lessons.update', [$course, $lesson]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')

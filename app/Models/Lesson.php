@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DocumentUser;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Lesson;
 
 class Lesson extends Model
@@ -66,9 +67,8 @@ class Lesson extends Model
     {
         if (!empty($request['lesson_image'])) {
             $image = $request->file('lesson_image');
-            $path = $image->hashName();
-            $request->file('lesson_image')->storeAs('public/logo_lesson', 'logo_' . $path, 'local');
-            $logoPath = 'storage/logo_lesson/logo_' . $path;
+            $path = $request->file('lesson_image')->store('images', 's3');
+            $logoPath = Storage::disk('s3')->url($path);
         } else {
             $logoPath = null;
         }
@@ -87,9 +87,8 @@ class Lesson extends Model
     {
         if (!empty($request['lesson_image'])) {
             $image = $request->file('lesson_image');
-            $path = $image->hashName();
-            $request->file('lesson_image')->storeAs('public/logo_lesson', 'logo_' . $path, 'local');
-            $logoPath = 'storage/logo_lesson/logo_' . $path;
+            $path = $request->file('lesson_image')->store('images', 's3');
+            $logoPath = Storage::disk('s3')->url($path);
         } elseif (!empty($this->image)) {
             $logoPath = $this->image;
         } else {
