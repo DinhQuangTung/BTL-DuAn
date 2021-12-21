@@ -1,0 +1,22 @@
+.button-submit {
+    background: $button_color;
+    box-shadow: inset 0px 2px 4px $course_box_shadow_color;
+    border-radius: 22px;
+    width: 106px;
+    height: 42px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -0.05em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      color: $text_color_card_content;
+    }
+  }

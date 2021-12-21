@@ -36,3 +36,10 @@ Quickly set up skeleton for your Laravel 8.x app
 ## License
 
 [MIT license](https://opensource.org/licenses/MIT).
+
+## Thêm vào file .env để sử dụng aws s3
+AWS_ACCESS_KEY_ID=AKIATSERS324VQKZX3MR
+AWS_SECRET_ACCESS_KEY=QqHBZuip4hmG+wWd0q0DFamSMQBb/AW7E2hW5SdR
+AWS_DEFAULT_REGION=ap-southeast-1
+AWS_BUCKET=uetlearn-documents
+AWS_USE_PATH_STYLE_ENDPOINT=true

@@ -88,7 +88,7 @@ class User extends Authenticatable
 
     public function documents()
     {
-        return $this->belongsToMany(Document::class, 'document_users', 'user_id', 'document_id')->withPivot('lesson_id')->withTimestamps();
+        return $this->belongsToMany(Document::class, 'document_users', 'user_id', 'document_id');
     }
 
     public function getMyCoursesAttribute()

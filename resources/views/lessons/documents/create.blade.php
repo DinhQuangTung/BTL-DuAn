@@ -1,16 +1,15 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="form-create-course mb-4 container bg-white">
-        <h1 class="text-info">Create Course<hr></h1>
-        <form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data">
+        <h1 class="text-info">Create Document<hr></h1>
+        <form action="{{ route('lessons.documents.store', [$lesson]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row m-0 p-0">
                 <div class="col-md-6 mt-3 pl-0">
                     <div class="form-group">
-                        <label for="courseTitle" class="course-label">Title:</label>
-                        <input type="text" name="course_title" class="form-control" id="courseTitle" value="" required>
-                        @error('course_title')
+                        <label for="documentName" class="course-label">Name:</label>
+                        <input type="text" name="document_name" class="form-control" id="documentName" value="" placeholder="" required>
+                        @error('document_name')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -19,9 +18,9 @@
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
-                        <label for="courseDescription" class="course-label">Description:</label>
-                        <input type="text" name="course_description" class="form-control" id="courseDescription" value="" required>
-                        @error('course_description')
+                        <label for="documentType" class="course-label">Type:</label>
+                        <input type="number" name="document_type" class="form-control" id="documentType" value="" required>
+                        @error('document_type')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -30,9 +29,9 @@
                 </div>
                 <div class="col-md-6 mt-3 pl-0">
                     <div class="form-group">
-                        <label for="courseImage" class="course-label">Image:</label>
-                        <input type="file" name="course_image" id="courseImage" required>
-                        @error('course_image')
+                        <label for="documentImage" class="course-label">Image:</label>
+                        <input type="file" name="document_image" id="documentImage">
+                        @error('document_image')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -41,9 +40,9 @@
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
-                        <label for="coursePrices" class="course-label">Price:</label>
-                        <input type="number" name="course_price" class="form-control" id="coursePrice" value="" required>
-                        @error('course_price')
+                        <label for="documentFile" class="course-label">File:</label>
+                        <input type="file" name="document_file" class="form-control" id="documentFile" value="">
+                        @error('document_file')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

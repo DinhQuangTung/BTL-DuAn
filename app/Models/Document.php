@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Lesson;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class Document extends Model
 {
@@ -21,6 +24,36 @@ class Document extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'document_users', 'document_id', 'user_id')->withPivot('lesson_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'document_users', 'document_id', 'user_id');
+    }
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class, 'lesson_id');
+    }
+
+    public function createDocument($request, $lessonId)
+    {
+        if (!empty($request['document_image'])) {
+            $path = $request->file('document_image')->store('images', 's3');
+            $logoPath = Storage::disk('s3')->url($path);
+        } else {
+            $logoPath = null;
+        }
+
+        if (!empty($request['document_file'])) {
+            $path = $request->file('document_file')->store('documents', 's3');
+            $filePath = Storage::disk('s3')->url($path);
+        } else {
+            $filePath = null;
+        }
+
+        Document::create([
+           'lesson_id' => $lessonId,
+           'name' => $request['document_name'],
+           'type' => $request['document_type'],
+           'logo_path' => $logoPath,
+           'file_path' => $filePath
+        ]);
     }
 }

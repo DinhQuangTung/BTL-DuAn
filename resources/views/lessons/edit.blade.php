@@ -2,16 +2,16 @@
 
 @section('content')
     <div class="form-create-course mb-4 container bg-white">
-        <h1 class="text-info">Edit Course<hr></h1>
-        <form action="{{ route('courses.update', [$course]) }}" method="POST" enctype="multipart/form-data">
+        <h1 class="text-info">Edit Lesson<hr></h1>
+        <form action="{{ route('course.lessons.update', [$course, $lesson]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="row m-0 p-0">
                 <div class="col-md-6 mt-3 pl-0">
                     <div class="form-group">
-                        <label for="courseTitle" class="course-label">Title:</label>
-                        <input type="text" name="course_title" class="form-control" id="courseTitle" value="{{ $course->title }}" placeholder=""required>
-                        @error('course_title')
+                        <label for="lessonTitle" class="course-label">Title:</label>
+                        <input type="text" name="lesson_title" class="form-control" id="lessonTitle" value="{{ $lesson->title }}" placeholder="" required>
+                        @error('lesson_title')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -20,9 +20,9 @@
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
-                        <label for="courseDescription" class="course-label">Description:</label>
-                        <input type="text" name="course_description" class="form-control" id="courseDescription" value="{{ $course->description }}" required>
-                        @error('course_description')
+                        <label for="lessonRequirement" class="course-label">Requirement:</label>
+                        <input type="number" name="lesson_requirement" class="form-control" id="lessonRequirement" value="{{ $lesson->requirement }}" required>
+                        @error('lesson_requirement')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -31,9 +31,9 @@
                 </div>
                 <div class="col-md-6 mt-3 pl-0">
                     <div class="form-group">
-                        <label class="course-label" for="courseImage">Image:</label>
-                        <input type="file" name="course_image" id="courseImage">
-                        @error('course_image')
+                        <label for="lessonImage" class="course-label">Image:</label>
+                        <input type="file" name="lesson_image" id="lessonImage">
+                        @error('lesson_image')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -42,9 +42,9 @@
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
-                        <label for="coursePrices" class="course-label">Price:</label>
-                        <input type="number" name="course_price" class="form-control" id="coursePrice" value="{{ $course->price }}" placeholder="VND" required>
-                        @error('course_price')
+                        <label for="lessonContent" class="course-label">Content:</label>
+                        <input type="text" name="lesson_content" class="form-control" id="lessonContent" value="{{ $lesson->content }}" required>
+                        @error('lesson_content')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -52,15 +52,14 @@
                     </div>
                 </div>
                 <div class="col-md-6 mt-3 pl-0">
-                    <div class="form-group d-flex">
-                        <label for="courseDescription" class="course-label mr-2">Tags:</label>
-                        <select class="get-value input-change form-control form-control-custom select-tag  select-2" id="courseTag" name="course_tag" style="width:100%" multiple>
-                            <option value="">Tags</option>
-                            @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}" @if ($tag->id == request('tag')) selected @endif>{{ $tag->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                    <div class="form-group">
+                        <label for="lessonLearnTime" class="course-label">Learn Time:</label>
+                        <input type="number" name="lesson_learn_time" class="form-control" id="lessonLearnTime" value="{{ $lesson->learn_time }}" required>
+                        @error('lesson_learn_time')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">

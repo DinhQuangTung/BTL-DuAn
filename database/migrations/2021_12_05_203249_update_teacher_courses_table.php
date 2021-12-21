@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateNullableForUsernameInUsersTable extends Migration
+class UpdateTeacherCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateNullableForUsernameInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->nullable()->change();
+        Schema::table('courses', function (Blueprint $table) {
+            $table->string('teacher_id')->nullable()->after('id');
         });
     }
 
@@ -25,8 +25,8 @@ class UpdateNullableForUsernameInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->change();
+        Schema::table('courses', function (Blueprint $table) {
+            $table->dropColumn('teacher_id');
         });
     }
 }
