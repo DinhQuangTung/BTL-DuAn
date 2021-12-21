@@ -163,7 +163,6 @@ class Course extends Model
     public function createCourse($request)
     {
         if (!empty($request['course_image'])) {
-            $image = $request->file('course_image');
             $path = $request->file('course_image')->store('images', 's3');
             $logoPath = Storage::disk('s3')->url($path);
         } else {
@@ -182,7 +181,6 @@ class Course extends Model
     public function updateCourse($request)
     {
         if (!empty($request['course_image'])) {
-            $image = $request->file('course_image');
             $path = $request->file('course_image')->store('images', 's3');
             $logoPath = Storage::disk('s3')->url($path);
         } elseif (!empty($this['logo_path'])) {

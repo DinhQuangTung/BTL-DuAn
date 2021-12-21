@@ -35,7 +35,6 @@ class Document extends Model
     public function createDocument($request, $lessonId)
     {
         if (!empty($request['document_image'])) {
-            $image = $request->file('document_image');
             $path = $request->file('document_image')->store('images', 's3');
             $logoPath = Storage::disk('s3')->url($path);
         } else {
@@ -43,7 +42,6 @@ class Document extends Model
         }
 
         if (!empty($request['document_file'])) {
-            $file = $request->file('document_file');
             $path = $request->file('document_file')->store('documents', 's3');
             $filePath = Storage::disk('s3')->url($path);
         } else {

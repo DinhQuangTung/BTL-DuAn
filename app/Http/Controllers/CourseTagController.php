@@ -24,7 +24,7 @@ class CourseTagController extends Controller
 
     public function detroy(Request $request)
     {
-        $course->tags()->detach($request['add_tag']);
+        // $course->tags()->detach($request['add_tag']);
 
         return back()->with('success', 'Remove tag successfully!');
     }

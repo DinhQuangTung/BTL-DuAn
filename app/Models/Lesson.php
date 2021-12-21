@@ -66,7 +66,6 @@ class Lesson extends Model
     public function createLesson($request, $courseId)
     {
         if (!empty($request['lesson_image'])) {
-            $image = $request->file('lesson_image');
             $path = $request->file('lesson_image')->store('images', 's3');
             $logoPath = Storage::disk('s3')->url($path);
         } else {
@@ -86,7 +85,6 @@ class Lesson extends Model
     public function updateLesson($request, $courseId)
     {
         if (!empty($request['lesson_image'])) {
-            $image = $request->file('lesson_image');
             $path = $request->file('lesson_image')->store('images', 's3');
             $logoPath = Storage::disk('s3')->url($path);
         } elseif (!empty($this->image)) {
