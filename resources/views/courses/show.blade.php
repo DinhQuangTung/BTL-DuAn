@@ -21,7 +21,7 @@
                 <div class="col-md-8 p-0">
                     <div class="course-detail-content">
                             <!-- Nav tabs -->
-                        <ul class="tab-bar nav nav-pills d-flex align-items-center" id="pillsTabDetailCourse" role="tablist">
+                        <ul class="tab-bar nav nav-pills d-flex align-items-center" id="pillsTab" role="tablist">
                             <li class="nav-item col-md-2" role="presentation">
                                 <a class="nav-link @if (!Session::has('post_review')) active @endif d-flex align-items-center" id="pillsLessonsTab" data-toggle="pill" href="#pillsLessons" role="tab" aria-controls="pills-lessons" aria-selected="true">
                                     <p class="m-0">Lessons</p>

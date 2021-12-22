@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showAdminLoginForm'])->name('admin.show_login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login');
-    Route::resource('management', AccountManagementController::class)->only(['index']);
+    Route::resource('management', AccountManagementController::class)->only(['index', 'destroy'])->middleware(['auth', 'admin']);
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
