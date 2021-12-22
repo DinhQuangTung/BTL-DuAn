@@ -14,7 +14,7 @@
                 <span class=" hapo-learn-banner-content-quote d-block">
                     Interactive lessons, "on-the-go" <br> practice, peer support.
                 </span>
-                <a href="#" class="btn d-flex justify-content-center align-items-center" type="button">
+                <a href="{{ route('courses.index') }}" class="btn d-flex justify-content-center align-items-center" type="button">
                     Start Learning Now! 
                 </a>
             </div>           
@@ -127,7 +127,7 @@
             <a class="view-all-our-courses container d-flex justify-content-center" href="{{ route('courses.index') }}">
                 View All Our Courses 
                 <span>
-                    <img src="{{ asset('img/right_arrow.png') }}" alt="arrow">
+                    <i class="fas fa-long-arrow-alt-right"></i>
                 </span>
             </a>
         </div>
@@ -198,7 +198,7 @@
         <div class="become-a-member container-fluid d-flex justify-content-center align-items-center ">
             <div class="become-a-member-content col-md-6 d-flex flex-column align-items-center">
                 <p>Become a member of our growing community!</p>
-                <a class="btn d-flex justify-content-center align-items-center" href="#">Start Learning Now!</a>
+                <a class="btn d-flex justify-content-center align-items-center" href="{{ route('courses.index') }}">Start Learning Now!</a>
             </div>
         </div>
         <div class="statistic container-fluid p-0 d-flex flex-column">
