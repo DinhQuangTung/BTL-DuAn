@@ -9,7 +9,7 @@
     @endif
     <div class="all-course-page w-100 d-flex flex-column">
         <form action="{{ route('courses.index') }}" method="get">
-            <div class="container d-flex">
+            <div class="container d-flex p-0">
                 <div class="filter-form mt-5">
                     <a data-toggle="collapse" href="#filterCollapse" class="filter-button btn"><i class="fas fa-sliders-h"></i> Filter</a> 
                 </div>
@@ -25,12 +25,12 @@
                 </div>
             </div>
             
-            <div id="filterCollapse" class="filter-collapse panel-collapse collapse container mt-3">
+            <div id="filterCollapse" class="filter-collapse panel-collapse collapse container p-0 mt-3">
                 <div class="filter-collapse-body">
                     <div class="row container w-100 p-0 mx-auto font-weight-bold text-secondary">
-                        <div class="col-lg-1 p-lg-0 filter-subtitle">Filter by</div>
+                        <div class="col-xl-1 p-md-0 filter-subtitle">Filter by</div>
 
-                        <div class="col-lg-2 col-md-4 p-lg-0 newest-oldest-radio" id="newestOldestRadio">
+                        <div class="col-xl-2 col-lg-4 col-md-6 p-xl-0 newest-oldest-radio" id="newestOldestRadio">
                             <input type="radio" id="radioNewest" name="status"
                                 value="{{ config('config.options.newest') }}"
                                 {{ request('newest_oldest') == config('config.options.newest') ? 'checked' : '' }}>
@@ -42,7 +42,7 @@
                             <label for="radioOldest" class="float-lg-right">Oldest</label>
                         </div>
 
-                        <div class="col-lg-2 col-md-4 pr-lg-0 form-group">
+                        <div class="col-xl-3 col-lg-4 col-md-6 form-group">
                             <select class="get-value input-change form-control form-control-custom select-teacher  h-100 select-2" id="selectTeacher" name="teacher" style="width:100%">
                                 <option value="">Teacher</option>
                                 @foreach ($teachers as $teacher)
@@ -52,7 +52,7 @@
                             </select>
                         </div>
 
-                        <div class="col-lg-3 col-md-4 pr-lg-0 form-group">
+                        <div class="col-xl-3 col-lg-4 form-group">
                             <select class="get-value input-change form-control form-control-custom select-number-of-learner  select-2" id="selectNumberOfLearner"
                                 name="number_of_learner" style="width:100%">
                                 <option value="">Number of learners</option>
@@ -61,7 +61,7 @@
                             </select>
                         </div>
 
-                        <div class="col-lg-3 col-md-6 pr-lg-0 form-group">
+                        <div class="col-xl-3 col-lg-12 form-group">
                             <select class="get-value input-change form-control form-control-custom select-number-of-lesson  select-2" id="selectNumberOfLesson"
                                 name="number_of_lesson" style="width:100%">
                                 <option value="">Number of lessons</option>
@@ -71,16 +71,16 @@
                         </div>                  
                     </div>
 
-                    <div class="font-weight-bold container text-secondary row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-2 col-md-6 pl-lg-0 form-group">
+                    <div class="font-weight-bold m-0 text-secondary row">
+                        <div class="col-xl-1"></div>
+                        <div class="col-xl-2 col-lg-4 pl-xl-0 form-group">
                             <select class="get-value input-change form-control form-control-custom select-learn-time  select-2 " id="selectLearnTime" name="total_time" style="width:100%">
                                 <option value="">Total time</option>
                                 <option value="{{ config('config.options.asc') }}" @if (request('total_time') == config('config.options.asc')) selected @endif>Ascending</option>
                                 <option value="{{ config('config.options.desc') }}" @if (request('total_time') == config('config.options.desc')) selected @endif>Descending</option>
                             </select>
                         </div>
-                        <div class="col-lg-2 col-md-6 pl-lg-0 form-group">
+                        <div class="col-xl-2 col-lg-4 pl-xl-0 form-group">
                             <select class="get-value input-change form-control form-control-custom select-tag  select-2" id="selectTag" name="tag" style="width:100%">
                                 <option value="">Tags</option>
                                 @foreach ($tags as $tag)
@@ -90,7 +90,7 @@
                             </select>
                         </div>
 
-                        <div class="col-lg-2 col-md-6 pl-lg-0 form-group">
+                        <div class="col-xl-2 col-lg-4 pl-xl-0 form-group">
                             <select class="get-value input-change form-control form-control-custom select-review  select-2" id="selectReview" name="review" style="width:100%"
                             >
                                 <option value="">Review</option>
@@ -99,14 +99,14 @@
                             </select>
                         </div>
 
-                        <div class="col-lg-2 pl-lg-0">
+                        <div class="col-lg-2 pl-xl-0 mb-2">
                             <div class="reset-filter" id="resetFilter">Reset</div>
                         </div>
                     </div>
                 </div>
             </div>        
 
-            <div class="container list-courses">
+            <div class="container list-courses p-0">
                 <div class="row m-0">
                     @foreach ($courses as $course)
                         @include('courses.course', $course)

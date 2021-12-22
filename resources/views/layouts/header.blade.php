@@ -32,9 +32,9 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-center p-0" aria-labelledby="navbarDropdown" id="dropdownMenuUser">
-                                    <a href="{{ route('users.show', [Auth::id()]) }}" class="dropdown-item text-center mt-1 p-0">Profile</a>
-                                    <a id="logoutButton" class="dropdown-item m-0 text-center mb-2 p-0" href="{{ route('logout') }}">Logout</a>
+                                <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown" id="dropdownMenuUser">
+                                    <a href="{{ route('users.show', [Auth::id()]) }}" class="dropdown-item text-center">Profile</a>
+                                    <a id="logoutButton" class="dropdown-item m-0 text-center" href="{{ route('logout') }}">Logout</a>
 
                                     <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
