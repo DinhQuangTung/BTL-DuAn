@@ -18,20 +18,20 @@
                         @csrf
 
                         <div class="form-group login-username">
-                            <label for="username">Username:</label>
-                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}">
+                            <label for="loginUsername">Username:</label>
+                            <input id="loginUsername" type="text" class="form-control @error('login_username') is-invalid @enderror" name="login_username" value="{{ old('username') }}">
 
-                            @error('username')
+                            @error('login_username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                            <label for="loginPassword">Password:</label>
+                            <input id="loginPassword" type="password" class="form-control @error('login_password') is-invalid @enderror" name="login_password">
 
-                            @error('password')
+                            @error('login_password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -72,7 +72,6 @@
                 <div class="tab-pane fade register-tab" id="registerTab" role="tabpanel"> 
                     <form method="POST" action="{{ route('register') }}" class="container register-form">
                         @csrf
-
                         <div class="form-group register-username">
                             <label for="username">Username:</label>
                              <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}">

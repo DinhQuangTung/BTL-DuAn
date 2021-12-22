@@ -26,18 +26,18 @@
                 </div>
             </div>
             <div class="contact-us col-sm-4 col-6 order-last d-flex align-items-center">
-                <a href="facebook.com/tuyen.dung.haposoft" class="contact-icon contact-facebook" tabindex="0" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="facebook.com/tuyen.dung.haposoft">
+                <a href="facebook.com" class="contact-icon contact-facebook" tabindex="0" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="facebook.com/">
                 </a>
                 <a href="#" class="contact-icon contact-phone" tabindex="0" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="+84-85-645-9898">
                 </a>
-                <a href="info@haposoft.com" class="contact-icon contact-email" tabindex="0" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom"  data-content="info@haposoft.com">
+                <a href="info@uetlearn.com" class="contact-icon contact-email" tabindex="0" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom"  data-content="info@uetlearn.com">
                 </a>                  
             </div>
         </div>
     </div>
     <div class="footer-copyright w-100 d-flex justify-content-center align-items-center">
         <span>
-            <i class="far fa-copyright"></i> 2020 HapoLearn, Inc. All rights reserved.
+            <i class="far fa-copyright"></i> 2021 UetLearn, Inc. All rights reserved.
         </span>
     </div>
 </footer>

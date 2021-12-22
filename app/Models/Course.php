@@ -44,7 +44,7 @@ class Course extends Model
 
     public function getTeachersAttribute()
     {
-        return $this->users()->where('role', config('config.role.teacher'))->get();
+        return User::where('id', $this['teacher_id'])->get();
     }
 
     public function getNumberLessonAttribute()
@@ -166,7 +166,7 @@ class Course extends Model
             $path = $request->file('course_image')->store('images', 's3');
             $logoPath = Storage::disk('s3')->url($path);
         } else {
-            $logoPath = null;
+            $logoPath = config('view.path_logo');
         }
 
         Course::create([
@@ -186,7 +186,7 @@ class Course extends Model
         } elseif (!empty($this['logo_path'])) {
             $logoPath = $this['logo_path'];
         } else {
-            $logoPath = null;
+            $logoPath = config('view.path_logo');
         }
 
         Course::update([

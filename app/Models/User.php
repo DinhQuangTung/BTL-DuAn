@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -109,9 +110,8 @@ class User extends Authenticatable
 
     public function updateAvatar($request, $user)
     {
-        $request->file('profile_avatar')->storeAs('public/avatars', 'avatar_' . $user->username . '.png', 'local');
-        $avatarPath = 'storage/avatars/avatar_' . $user->username . '.png';
-        $user->avatar = $avatarPath;
+        $path = $request->file('profile_avatar')->store('images', 's3');
+        $user->avatar = Storage::disk('s3')->url($path);
         $user->save();
     }
 }

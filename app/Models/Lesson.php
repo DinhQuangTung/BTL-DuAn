@@ -69,7 +69,7 @@ class Lesson extends Model
             $path = $request->file('lesson_image')->store('images', 's3');
             $logoPath = Storage::disk('s3')->url($path);
         } else {
-            $logoPath = null;
+            $logoPath = config('view.path_logo');
         }
 
         Lesson::create([
@@ -90,7 +90,7 @@ class Lesson extends Model
         } elseif (!empty($this->image)) {
             $logoPath = $this->image;
         } else {
-            $logoPath = null;
+            $logoPath = config('view.path_logo');
         }
 
         Lesson::update([
