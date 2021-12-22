@@ -114,4 +114,12 @@ class User extends Authenticatable
         $user->avatar = $avatarPath;
         $user->save();
     }
+
+    public function scopeFilter($query, $request)
+    {
+        if (isset($request['keyword'])) {
+            $query->where('name', 'LIKE', '%' . $request['keyword'] . '%')->orWhere('email', 'LIKE', '%' . $request['keyword'] . '%');
+        }
+    }
+
 }

@@ -1,12 +1,9 @@
-body {
-  background: #f5f5f5;
-}
-
 .account-management {
   height: 100%;
   width: 100%;
   color: #566787;
-  font-family: $font_UTM_BryantLG;
+  background: linear-gradient(to right, #e96443, #904e95);
+  font-family: $font-UTM-BryantLG;
   
   .table-responsive {
     margin: 50px 0;
@@ -285,5 +282,71 @@ body {
   .pagination .page-item .page-link {
     color: #435d7d;
     border: 1px solid #435d7d;
+  }
+
+  .nav-pills {
+    padding: 0 15px;
+    margin-top: 40px;
+    margin-bottom: 5.5px;
+    
+    .nav-link {
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 40px;
+    }
+
+    .nav-link.active {
+      background: #435d7d;
+    }
+  }
+
+  .search-bar {
+    margin-top: auto;
+    height: 60px;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    background-color: #435d7d;
+    border-radius: 30px;
+    padding: 10px;
+  }
+
+  .search-input {
+    font-family: $font_UTM_BryantLG;
+    font-weight: 600;
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+  }
+
+  .search-bar > .search-input {
+    padding: 0 10px;
+    width: 450px;
+    caret-color:#ffffff;
+    transition: width 0.4s linear;
+  }
+
+  .search-bar > .search-icon{ 
+    background: white;
+    color: #e74c3c;
+  }
+
+  .search-icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
   }
 }
