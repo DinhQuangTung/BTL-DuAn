@@ -5,7 +5,7 @@ $(function () {
   });
 
   var hash = window.location.hash;
-  $('#pillsTabDetailCourse a[href="' + hash + '"]').tab('show');
+  $('#pillsTab a[href="' + hash + '"]').tab('show');
 
   $('#sendReview').on('click', function (event) {
     $('#pillsLessonsTab').removeClass('active');

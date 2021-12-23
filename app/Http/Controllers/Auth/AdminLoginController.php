@@ -26,8 +26,8 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required|string',
-            'password' => 'required|string',
+            'username' => 'required',
+            'password' => 'required',
         ]);
 
         if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']])) {

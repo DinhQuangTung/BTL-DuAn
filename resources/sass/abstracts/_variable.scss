@@ -27,7 +27,7 @@ $button_box_shadow_color: #6F8710;
 $css_tutorial_background_color: #24ABE2;
 $rails_tutorial_background_color: #E14E40;
 $java_tutorial_background_color: #1B75BB;
-$view_all_our_courses_color: #90AB26;
+$view_all_our_courses_color: #f56e0c;
 $yellow_color: #F2C54F;
 $black_color: #000000;
 $box_shadow_comment: 0px 0px 7px rgba(0, 0, 0, 0.5);
@@ -48,6 +48,19 @@ $input_solid_color: #C4C4C4;
 $button_hover_color: #748b18;
 $button_oldest_newest: #e5e6e7;
 $text_color: #505353;
+
+
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0px;
+  min-height: 100vh;
+  width: 100%;
+}
 
 .body {
   background-color: $white_color ;

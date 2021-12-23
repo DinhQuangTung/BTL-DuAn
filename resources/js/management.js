@@ -15,9 +15,22 @@ $(function () {
       });
     }
   });
+
   checkbox.on('click', function () {
     if (!this.checked) {
       $("#selectAll").prop("checked", false);
     }
   });
+
+  $("ul.tab-bar > li > a").on("shown.bs.tab", function (e) {
+    var id = $(e.target).attr("href").substr(1);
+    window.location.hash = id;
+  });
+
+  var hash = window.location.hash;
+
+  $("#managementSearch").on("submit", function () {
+    $(hash).tab('show');
+  })
+
 });
