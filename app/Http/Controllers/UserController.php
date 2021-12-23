@@ -29,4 +29,9 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Profile update successful!');
         }
     }
+
+    public function destroy(Request $request)
+    {
+        return '1';
+    }
 }

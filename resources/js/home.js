@@ -45,10 +45,6 @@ $(function () {
     $(this).tab('show');
   });
 
-  // $('#dropdownMenuUser').css({
-  //   'width': ($('.name-of-user').width() + 35 + 'px')
-  // });
-
   var chatbox = document.getElementById('fbCustomerChat');
   chatbox.setAttribute("page_id", "108828021517439");
   chatbox.setAttribute("attribution", "biz_inbox");

@@ -4,7 +4,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="manage-account">Manage Tearchers</div>
+                        <div class="manage-account">Manage Courses</div>
                     </div>
                     <div class="col-sm-6 pt-2">
                         <a href="#addUserModal" class="d-flex align-items-center btn btn-success" data-toggle="modal"><i class="faws fas fa-plus-circle"></i><span>Add New Teacher</span></a>
@@ -21,15 +21,16 @@
                                 <label for="selectAll"></label>
                             </span>
                         </th>
-                        <th class="column-title">Name</th>
-                        <th class="column-title">Email</th>
-                        <th class="column-title">Permission</th>
+                        <th class="column-title">ID</th>
+                        <th class="column-title">Title</th>
+                        <th class="column-title">Created By</th>
+                        <th class="column-title">Approval</th>
                         <th class="column-title">Phone</th>
                         <th class="column-title">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($teachers as $teacher)
+                    @foreach ($courses as $course)
                         <tr>
                             <td>
                                 <span class="custom-checkbox">
@@ -37,10 +38,16 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-                            <td class="row-content">{{ $teacher->name }}</td>
-                            <td class="row-content">{{ $teacher->email }}</td>
-                            <td class="row-content">Teacher</td>
-                            <td class="row-content">{{ $teacher->phone_number }}</td>
+                            <td class="row-content">{{ $course->id}}</td>
+                            <td class="row-content">{{ $course->title}}</td>
+                            <td class="row-content">{{ $course->teacher_name }}</td>
+                            <td class="row-content">
+                                <!-- <form method="post" action="{{ route('approve_course', ['id' => $course])}}">
+                                    @csrf -->
+                                    <button class="btn-approve button-submit float-none {{ $course->approval_status == 'approved' ? 'bg-white text-dark' : ''}}" type="submit" value="{{$course->id}}">{{ $course->approval_status }}</button>
+                                <!-- </form> -->
+                            </td>
+                            <td class="row-content">{{ $course->teacher_phone }}</td>
                             <td class="row-content">
                                 <a href="#editUserModal" class="edit" data-toggle="modal"><i class="faws fas fa-pen" data-toggle="tooltip" data-original-title="Edit"></i></a>
                                 <a href="#deleteUserModal" class="delete" data-toggle="modal"><i class="faws fas fa-trash" data-toggle="tooltip" data-original-title="Delete"></i></a>
@@ -81,62 +88,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Edit Modal HTML -->
-                        <div id="editUserModal" class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form>
-                                        <div class="modal-header">						
-                                            <div class="modal-title">Edit User</div>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="faws fas fa-times"></i></button>
-                                        </div>
-                                        <div class="modal-body">					
-                                            <div class="form-group">
-                                                <label>Name</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <input type="email" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <textarea class="form-control"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Phone</label>
-                                                <input type="text" class="form-control">
-                                            </div>					
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                            <input type="submit" class="btn btn-info" value="Save">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Delete Modal HTML -->
-                        <div id="deleteUserModal" class="modal fade">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form>
-                                        <div class="modal-header">						
-                                            <div class="modal-title">Delete User</div>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="faws fas fa-times"></i></button>
-                                        </div>
-                                        <div class="modal-body">					
-                                            <div>Are you sure you want to delete these Records?</div>
-                                            <div class="text-warning"><small>This action cannot be undone.</small></div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                            <input type="submit" class="btn btn-danger" value="Delete">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     @endforeach
                 </tbody>
             </table>
@@ -145,9 +96,65 @@
                     <div class="hint-text">Showing <b>{{ config('config.pagination') }}</b> out of <b>{{ $numberOfTeachers }}</b> entries</div>
                 @endif
                 <div class="pagination-custom container mt-5 pr-4 d-flex justify-content-end">
-                    {!! $teachers->appends($_GET)->fragment('pillsTeachers')->onEachSide(1)->links() !!}
+                    {!! $courses->appends($_GET)->fragment('pillsCourse')->onEachSide(1)->links() !!}
                 </div>
             </div>
         </div>
-    </div>        
+    </div>    
+    <!-- Edit Modal HTML -->
+    <div id="editUserModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">						
+                        <div class="modal-title">Edit User</div>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="faws fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">					
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" class="form-control">
+                        </div>					
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-info" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal HTML -->
+    <div id="deleteUserModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">						
+                        <div class="modal-title">Delete User</div>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="faws fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">					
+                        <div>Are you sure you want to delete these Records?</div>
+                        <div class="text-warning"><small>This action cannot be undone.</small></div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    
 </div>

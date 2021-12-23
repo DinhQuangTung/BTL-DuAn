@@ -4,10 +4,10 @@
         <div class="container-xl d-flex">
             <ul class="nav nav-pills tab-bar" id="pillsTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="pill" href="#users">Users</a>
+                    <a class="nav-link active" data-toggle="pill" href="#pillsUser">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="pill" href="#teachers">Teachers</a>
+                    <a class="nav-link" data-toggle="pill" href="#pillsCourse">Courses</a>
                 </li>
             </ul>
             <form class="managementSearch" action="{{ route('management.index') }}" method="GET">
@@ -20,11 +20,11 @@
             </form>
         </div>
         <div class="tab-content">
-            <div class="tab-pane container active" id="users">
+            <div class="tab-pane container active" id="pillsUser">
                 @include('management.users')
             </div>
-            <div class="tab-pane container fade" id="teachers">
-                @include('management.teachers')
+            <div class="tab-pane container fade" id="pillsCourse">
+                @include('management.courses')
             </div>
         </div>
     </div>

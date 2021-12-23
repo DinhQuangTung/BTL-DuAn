@@ -14,7 +14,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $teachers = User::where('role', config('config.role.teacher'))->get();
-        $courses = Course::filter($request)->paginate(config('config.pagination'));
+        $courses = Course::where('course_status', true)->filter($request)->paginate(config('config.pagination'));
         $tags = Tag::get();
 
         return view('courses.index', compact('courses', 'teachers', 'tags'));
@@ -80,5 +80,19 @@ class CourseController extends Controller
         Course::where('id', $course->id)->delete();
 
         return redirect()->route('courses.index');
+    }
+    
+    public function approveCourse(Request $request)
+    {
+        $course = Course::where('id', $request['id'])->first();
+        if ($course['course_status']) {
+            $course['course_status'] = false;
+            $course->save();
+            return 'unapproved';
+        } else {
+            $course['course_status'] = true;
+            $course->save();
+            return 'approved';
+        }
     }
 }

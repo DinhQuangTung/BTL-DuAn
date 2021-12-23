@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('course-tags', CourseTagController::class)->only(['store']);
     Route::resource('reviews', ReviewController::class)->only(['store']);
     Route::resource('course.lessons', LessonController::class);
-    Route::resource('users', UserController::class)->only(['show', 'update']);
+    Route::resource('users', UserController::class);
     Route::resource('lessons.documents', DocumentController::class);
 
     Route::post('/documents/learned', [DocumentController::class, 'learn']);
@@ -50,6 +50,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showAdminLoginForm'])->name('admin.show_login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login');
     Route::resource('management', AccountManagementController::class)->only(['index', 'destroy'])->middleware(['auth', 'admin']);
+    Route::post('/approve-course/{id}', [CourseController::class, 'approveCourse'])->name('approve_course')->middleware(['auth', 'admin']);
+    Route::post('/management/users/delete', [AccountManagementController::class, 'deleteUser'])->name('delete_user')->middleware(['auth', 'admin']);
+    Route::post('/management/users/edit', [AccountManagementController::class, 'editUser'])->name('edit_user')->middleware(['auth', 'admin']);
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {

@@ -122,4 +122,15 @@ class User extends Authenticatable
         }
     }
 
+    public function getRoleUserAttribute()
+    {
+        // dd($this->role);
+        if ($this->role == '1') {
+            return 'Teacher';
+        } elseif ($this->role == '0') {
+            return 'Student';
+        } elseif ($this->role == '2') {
+            return 'Admin';
+        }
+    }
 }

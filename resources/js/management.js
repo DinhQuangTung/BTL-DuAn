@@ -32,5 +32,11 @@ $(function () {
   $("#managementSearch").on("submit", function () {
     $(hash).tab('show');
   })
+});
 
+$('.btn-user').on('click', function () {
+  var post = $(this);
+  var userId = post.attr('value');
+  console.log(userId);
+  $('.value-id').attr('value', userId);
 });

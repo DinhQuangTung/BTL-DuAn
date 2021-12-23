@@ -29,7 +29,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($students as $student)
+                    @foreach ($users as $user)
                         <tr>
                             <td>
                                 <span class="custom-checkbox">
@@ -37,13 +37,13 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-                            <td class="row-content">{{ $student->name }}</td>
-                            <td class="row-content">{{ $student->email }}</td>
-                            <td class="row-content">Student</td>
-                            <td class="row-content">{{ $student->phone_number }}</td>
+                            <td class="row-content">{{ $user->name }}</td>
+                            <td class="row-content">{{ $user->email }}</td>
+                            <td class="row-content">{{ $user->role_user }}</td>
+                            <td class="row-content">{{ $user->phone_number }}</td>
                             <td class="row-content">
-                                <a href="#editUserModal" class="edit" data-toggle="modal"><i class="faws fas fa-pen" data-toggle="tooltip" data-original-title="Edit"></i></a>
-                                <a href="#deleteUserModal" class="delete" data-toggle="modal"><i class="faws fas fa-trash" data-toggle="tooltip" data-original-title="Delete"></i></a>
+                                <a href="#editUserModal" class="edit btn-user" value="{{ $user->id }}" data-toggle="modal"><i class="faws fas fa-pen" data-toggle="tooltip" data-original-title="Edit"></i></a>
+                                <a href="#deleteUserModal" class="delete btn-user" value="{{ $user->id }}" data-toggle="modal"><i class="faws fas fa-trash" data-toggle="tooltip" data-original-title="Delete"></i></a>
                             </td>
                         </tr>
 
@@ -51,9 +51,8 @@
                         <div id="deleteUserModal" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{route('management.destroy', [$student->id])}}" method="POST">
+                                    <form action="{{route('delete_user')}}" method="POST">
                                         @csrf
-                                        @method('DELETE')
                                         <div class="modal-header">						
                                             <div class="modal-title">Delete User</div>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="faws fas fa-times"></i></button>
@@ -63,6 +62,7 @@
                                             <div class="text-warning"><small>This action cannot be undone.</small></div>
                                         </div>
                                         <div class="modal-footer">
+                                            <input hidden="true" name="username_id" class="value-id">
                                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                             <input type="submit" class="btn btn-danger" value="Delete">
                                         </div>
@@ -112,6 +112,7 @@
                                             </div>	
                                         </div>
                                         <div class="modal-footer">
+                                            <input hidden="true" name="username_id" class="value-id">
                                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                             <input type="submit" class="btn btn-success" value="Add">
                                         </div>
@@ -123,9 +124,8 @@
                         <div id="editUserModal" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{route('management.destroy', [$student->id])}}" method="POST">
+                                    <form action="{{route('edit_user')}}" method="POST">
                                         @csrf
-                                        @method('DELETE')
                                         <div class="modal-header">						
                                             <div class="modal-title">Edit User</div>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="faws fas fa-times"></i></button>
@@ -133,22 +133,30 @@
                                         <div class="modal-body">					
                                             <div class="form-group">
                                                 <label>Name</label>
-                                                <input type="text" class="form-control">
+                                                <input name="username_edit" type="text" class="form-control" placeholder="">
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email" class="form-control">
+                                                <input name="email_edit type="email" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <textarea class="form-control"></textarea>
+                                                <textarea name="address_edit" class="form-control"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="text" class="form-control">
+                                                <input name="phone_edit" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="role_edit" required>
+                                                    <option value="">Role</option>
+                                                    <option value="0">Student</option>
+                                                    <option value="1">Teacher</option>
+                                                </select>
                                             </div>					
                                         </div>
                                         <div class="modal-footer">
+                                            <input hidden="true" name="username_id" class="value-id">
                                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                                             <input type="submit" class="btn btn-info" value="Save">
                                         </div>
@@ -164,7 +172,7 @@
                     <div class="hint-text">Showing <b>{{ config('config.pagination') }}</b> out of <b>{{ $numberOfStudents }}</b> entries</div>
                 @endif
                 <div class="pagination-custom container mt-5 pr-4 d-flex justify-content-end">
-                    {!! $students->appends($_GET)->fragment('pillsStudens')->onEachSide(1)->links() !!}
+                    {!! $users->appends($_GET)->fragment('pillsStudens')->onEachSide(1)->links() !!}
                 </div>
             </div>
         </div>

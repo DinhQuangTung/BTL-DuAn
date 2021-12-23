@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/img/background-main.jpeg": "/img/background-main.jpeg",
     "/img/become_a_member.png": "/img/become_a_member.png",
     "/img/css_course.png": "/img/css_course.png",
     "/img/dropdown_arrow.png": "/img/dropdown_arrow.png",
@@ -16,6 +17,7 @@
     "/img/hapo_logo_message.png": "/img/hapo_logo_message.png",
     "/img/info_avavtar.png": "/img/info_avavtar.png",
     "/img/java_1.png": "/img/java_1.png",
+    "/img/join_us.jpg": "/img/join_us.jpg",
     "/img/laravel_1_logo_black_and_white_1.png": "/img/laravel_1_logo_black_and_white_1.png",
     "/img/messenger.png": "/img/messenger.png",
     "/img/multi_device.png": "/img/multi_device.png",
@@ -31,7 +33,5 @@
     "/img/why_hpl_background.png": "/img/why_hpl_background.png",
     "/img/yellow_star.png": "/img/yellow_star.png",
     "/fonts/utm_bryantlg-webfont.woff": "/fonts/utm_bryantlg-webfont.woff",
-    "/fonts/utm_bryantlg-webfont.woff2": "/fonts/utm_bryantlg-webfont.woff2",
-    "/img/join_us.jpg": "/img/join_us.jpg",
-    "/img/background-main.jpeg": "/img/background-main.jpeg"
+    "/fonts/utm_bryantlg-webfont.woff2": "/fonts/utm_bryantlg-webfont.woff2"
 }

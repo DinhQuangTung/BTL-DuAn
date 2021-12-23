@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use stdClass;
 
 class Course extends Model
 {
@@ -14,7 +15,7 @@ class Course extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'description', 'logo_path', 'learn_times', 'lesson_learned', 'price', 'teacher_id'
+        'title', 'description', 'logo_path', 'learn_times', 'lesson_learned', 'price', 'teacher_id', 'course_status'
     ];
 
     public function lessons()
@@ -47,6 +48,26 @@ class Course extends Model
         return User::where('id', $this['teacher_id'])->get();
     }
 
+    public function getTeacherNameAttribute()
+    {
+        $teacher = User::where('id', $this['teacher_id'])->first();
+        return $teacher->name;
+    }
+
+    public function getApprovalStatusAttribute()
+    {
+        if ($this['course_status']) {
+            return 'approved';
+        } else {
+            return 'unapproved';
+        }
+    }
+
+    public function getTeacherPhoneAttribute()
+    {
+        $teacher = User::where('id', $this['teacher_id'])->first();
+        return $teacher['phone_number'];
+    }
     public function getNumberLessonAttribute()
     {
         return $this->lessons()->count();
