@@ -62,15 +62,14 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $input = $request->all();
-
         $this->validate($request, [
-            'username' => 'required|string',
-            'password' => 'required|string',
+            'login_username' => 'required|string',
+            'login_password' => 'required|string',
         ]);
 
-        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        if (auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
-            return redirect()->back()->with('success', 'Welcome to hapolearn!');
+        $fieldType = filter_var($request['login_username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        if (auth()->attempt(array($fieldType => $input['login_username'], 'password' => $input['login_password']))) {
+            return redirect()->back()->with('success', 'Welcome to UetLearn!');
         } else {
             return redirect()->back()
                 ->with('error', 'Username or Password are wrong.');

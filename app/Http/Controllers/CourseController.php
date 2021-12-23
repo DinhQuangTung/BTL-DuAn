@@ -28,10 +28,10 @@ class CourseController extends Controller
                 
                 return view('courses.create', compact('tags'));
             } else {
-                echo "ban k co quyen truy cap";
+                return view('components.error');
             }
         } else {
-            echo "ban k co quyen truy cap";
+            return view('components.error');
         }
     }
 
@@ -61,10 +61,10 @@ class CourseController extends Controller
                 
                 return view('courses.edit', compact('course', 'tags'));
             } else {
-                echo "ban k co quyen truy cap";
+                return view('components.error');
             }
         } else {
-            echo "ban k co quyen truy cap";
+            return view('components.error');
         }
     }
 

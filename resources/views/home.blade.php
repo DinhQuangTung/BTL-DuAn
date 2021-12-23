@@ -2,14 +2,14 @@
 
 @section('content')
     <div id="body" class="body container-fluid position-relative p-0 w-100">
-        <!-- HapoLearn banner -->
+        <!-- Banner -->
         <div class="hapo-learn-banner container-fluid d-flex align-items-center">         
             <div class="hapo-learn-banner-content container d-flex flex-column">
                 <span class="hapo-learn-banner-content-title d-block">
                     Learn Anytime, Anywhere
                 </span>
                 <span class="hapo-learn-banner-content-bold d-block">
-                    at HapoLearn <img src="{{ asset('img/hapo_logo.png') }}" alt="hapo-logo"> !
+                    at UetLearn <img src="{{ asset('img/hapo_logo.png') }}" alt="uet-logo"> !
                 </span>
                 <span class=" hapo-learn-banner-content-quote d-block">
                     Interactive lessons, "on-the-go" <br> practice, peer support.
@@ -132,12 +132,12 @@
             </a>
         </div>
 
-        <!-- Why-hapolearn-banner -->
+        <!-- Why-Uetlearn-banner -->
         <div class="why-hpl-banner container-fluid p-0">
             <div class="row w-100 h-100 align-items-center m-0">
                 <div class="why-hpl-text col-sm-6 d-flex flex-column align-items-center pr-0">
                     <div class="why-hpl-text-title">
-                        <p>Why HapoLearn?</p>
+                        <p>Why UetLearn?</p>
                     </div>
                     <div class="text-content">
                         <i class="fas fa-check-circle"></i>Interactive lessons, "on-the-go" practice, peer support.

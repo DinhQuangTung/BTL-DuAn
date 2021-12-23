@@ -33,4 +33,8 @@ return [
         realpath(storage_path('framework/views'))
     ),
 
+    'path_logo' => 'https://s3.ap-southeast-1.amazonaws.com/uetlearn-documents/images/AeBX39ZZmBwHdRNVJaj3t1ALcDpCjUEZoy6gZkgt.jpg',
+
+    'path_avatar' => 'https://s3.ap-southeast-1.amazonaws.com/uetlearn-documents/images/rkuAGftAjOwjvBRUZUOdIRf7oAlc9eqdFx0qMEj6.jpg',
+
 ];
