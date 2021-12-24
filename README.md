@@ -42,3 +42,13 @@ AWS_SECRET_ACCESS_KEY=QqHBZuip4hmG+wWd0q0DFamSMQBb/AW7E2hW5SdR
 AWS_DEFAULT_REGION=ap-southeast-1
 AWS_BUCKET=uetlearn-documents
 AWS_USE_PATH_STYLE_ENDPOINT=true
+
+##
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=huydaicaanvu@gmail.com
+MAIL_PASSWORD=huy100600
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=huydaicaanvu@gmail.com
+MAIL_FROM_NAME="Your Site Name"

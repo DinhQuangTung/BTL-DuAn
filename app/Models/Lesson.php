@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use App\Models\DocumentUser;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Lesson;
 
 class Lesson extends Model
 {
