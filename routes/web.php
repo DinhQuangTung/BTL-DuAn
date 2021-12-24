@@ -49,10 +49,12 @@ Route::group(['middleware' => 'auth'], function () {
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'showAdminLoginForm'])->name('admin.show_login');
     Route::post('/login', [AdminLoginController::class, 'login'])->name('admin.login');
+    Route::post('/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
     Route::resource('management', AccountManagementController::class)->only(['index', 'destroy'])->middleware(['auth', 'admin']);
     Route::post('/approve-course/{id}', [CourseController::class, 'approveCourse'])->name('approve_course')->middleware(['auth', 'admin']);
     Route::post('/management/users/delete', [AccountManagementController::class, 'deleteUser'])->name('delete_user')->middleware(['auth', 'admin']);
     Route::post('/management/users/edit', [AccountManagementController::class, 'editUser'])->name('edit_user')->middleware(['auth', 'admin']);
+    Route::post('/management/courses/delete', [AccountManagementController::class, 'deleteCourse'])->name('delete_course')->middleware(['auth', 'admin']);
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {

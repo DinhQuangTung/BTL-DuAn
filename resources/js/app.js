@@ -19,9 +19,9 @@ $(".btn-approve").on('click', function(){
         success : function(response){
             post.text(response);
             if (response == 'approved') {
-                post.addClass('bg-white text-dark');
+                post.addClass('bg-gradient-success');
             } else {
-                post.removeClass('bg-white text-dark');
+                post.removeClass('bg-gradient-success');
             }
         }
     });

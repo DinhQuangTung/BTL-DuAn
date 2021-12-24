@@ -97,6 +97,15 @@
     font-weight: 600;
   }
 }
+
+.notification-number {
+  font-size: 12px;
+}
+
+.notification-bell:active,
+.notification-bell:focus {
+  background-color: #435d7d !important;
+}
   
 @media screen and (max-width: 640px) {
   .main-content {

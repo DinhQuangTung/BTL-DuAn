@@ -40,3 +40,10 @@ $('.btn-user').on('click', function () {
   console.log(userId);
   $('.value-id').attr('value', userId);
 });
+
+$('.btn-course').on('click', function () {
+  var post = $(this);
+  var userId = post.attr('value');
+  console.log(userId);
+  $('.value-id').attr('value', userId);
+});

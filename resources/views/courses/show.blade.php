@@ -57,7 +57,7 @@
                                             </form>          
                                         </div>
                                         <div class="col-md-6 d-flex justify-content-center">
-                                            @if (!empty(Auth::user()) && Auth::user()->role == 0)
+                                            @if ((!empty(Auth::user()) && Auth::user()->role == 0) || (empty(Auth::user())))
                                                 @if (!empty($course->isJoined))
                                                     <button type="" class="joined-course">Joined</button>  
                                                 @else
@@ -135,7 +135,7 @@
                                 @if (!empty(Auth::user()) && Auth::user()->role == 1 && Auth::id() == $course->teacher_id)
                                     <form class="d-flex" action="{{ route('course-tags.store') }}" method="POST">
                                         @csrf
-                                        <select class="get-value input-change form-control form-control-custom select-tag d-none" id="selectTag" name="add_tag" style="width:100%">
+                                        <select class="get-value input-change form-control form-control-custom select-tag d-none text-dark p-0" id="selectTag" name="add_tag" style="width:100%">
                                             <option value="">Tags</option>
                                             @foreach ($allTags as $tag)
                                                 <option value="{{ $tag->id }}" @if ($tag->id == request('tag')) selected @endif>{{ $tag->name }}

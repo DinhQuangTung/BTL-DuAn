@@ -11,12 +11,12 @@ class AccountManagementController extends Controller
     public function index(Request $request)
     {
         $users = User::filter($request)->paginate(config('config.pagination'), ['*'], 'user_page');
-        $numberOfStudents = User::where('role', config('config.role.student'))->count();
+        $numberOfUsers = User::all()->count();
         $numberOfTeachers = User::where('role', config('config.role.teacher'))->count();
         
-        $courses = Course::withTrashed()->paginate(config('config.pagination'), ['*'], 'course_page');
+        $courses = Course::filter($request)->paginate(config('config.pagination'), ['*'], 'course_page');
         
-        return view('management.index', compact('users', 'numberOfStudents', 'numberOfTeachers', 'courses'));
+        return view('management.index', compact('users', 'numberOfUsers', 'numberOfTeachers', 'courses'));
     }
 
     public function deleteUser(Request $request)
@@ -54,5 +54,12 @@ class AccountManagementController extends Controller
         $user->save();
         
         return back()->with('success', 'Successfully edit this user!');
+    }
+
+    public function deleteCourse(Request $request)
+    {
+        Course::findOrFail($request['course_id'])->delete();
+        
+        return redirect('/admin/management#pillsCourse')->with('success', 'Successfully delete this course');
     }
 }

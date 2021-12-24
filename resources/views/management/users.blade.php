@@ -6,10 +6,6 @@
                     <div class="col-sm-6">
                         <div class="manage-account">Manage Users</div>
                     </div>
-                    <div class="col-sm-6 pt-2">
-                        <a href="#addUserModal" class="d-flex align-items-center btn btn-success" data-toggle="modal"><i class="faws fas fa-plus-circle"></i><span>Add New User</span></a>
-                        <a href="#deleteUserModal" class="d-flex align-items-center btn btn-danger" data-toggle="modal"><i class="faws fas fa-minus-circle"></i><span>Delete</span></a>						
-                    </div>
                 </div>
             </div>
             <table class="table table-striped table-hover">
@@ -168,9 +164,6 @@
                 </tbody>
             </table>
             <div class="clearfix d-flex align-items-end">
-                @if ($numberOfStudents >= config('config.pagination'))
-                    <div class="hint-text">Showing <b>{{ config('config.pagination') }}</b> out of <b>{{ $numberOfStudents }}</b> entries</div>
-                @endif
                 <div class="pagination-custom container mt-5 pr-4 d-flex justify-content-end">
                     {!! $users->appends($_GET)->fragment('pillsStudens')->onEachSide(1)->links() !!}
                 </div>

@@ -31,10 +31,16 @@ class AdminLoginController extends Controller
         ]);
 
         if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']])) {
-            return redirect()->route('admin.index');
+            return redirect()->route('management.index');
         } else {
             return redirect()->back()
                 ->with('error', 'Username or Password are wrong.');
         }
+    }
+
+    public function logout()
+    {
+        dd(1);
+        auth()->user()->logout();
     }
 }

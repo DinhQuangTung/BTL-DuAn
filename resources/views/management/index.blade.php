@@ -18,6 +18,28 @@
                     </div>
                 </div>
             </form>
+            <ul class="nav nav-pills tab-bar" id="pillsTab" role="tablist">
+                <li class="nav-item">
+                    <a href="{{ route('users.show', [Auth::id()]) }}" class="nav-link">{{ Auth::user()->name }}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle notification-bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <i class="far fa-bell active">
+                            <span class="notification-number">1<span>
+                        </i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown" id="dropdownMenuUser">
+                       
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <form id="logoutForm" action="{{ route('admin.logout') }}" method="POST" class="nav-link">
+                        @csrf
+                        <button type="submit" class="" id="logoutButton" class="m-0 text-center">Logout</button>
+                    </form>
+                </li>
+            </ul> 
         </div>
         <div class="tab-content">
             <div class="tab-pane container active" id="pillsUser">

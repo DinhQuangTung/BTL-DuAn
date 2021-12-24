@@ -20,6 +20,25 @@
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
   }
 
+  .bg-gradient-success {
+    background-image: linear-gradient(
+  195deg, #66BB6A 0%, #43A047 100%);
+  }
+
+  .badge {
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 0.55em 0.9em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    color: $text_navbar_color;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.45rem;
+}
+            
   .table-title {        
     padding-bottom: 15px;
     background: #435d7d;
@@ -230,6 +249,7 @@
     border-radius: 2px;
     box-shadow: none;
     border-color: #dddddd;
+    color: $hapo_learn_quote;
   }
 
   .modal textarea.form-control {
@@ -295,6 +315,7 @@
       font-weight: 700;
       text-align: center;
       border-radius: 40px;
+      background-color: none;
     }
 
     .nav-link.active {

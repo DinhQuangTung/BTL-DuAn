@@ -29,7 +29,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link navbar-link-element  dropdown-toggle name-of-user {{ Route::currentRouteName() == 'users.show' ? 'active' : '' }}" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name }} <i class="far fa-bell"></i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown" id="dropdownMenuUser">

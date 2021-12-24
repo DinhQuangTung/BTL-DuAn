@@ -7,7 +7,7 @@
             <span>Create</span>
         </a>
     @endif
-    <div class="all-course-page w-100 d-flex flex-column">
+    <div class="all-course-page w-100 d-flex flex-column bg-light">
         <form action="{{ route('courses.index') }}" method="get">
             <div class="container d-flex p-0">
                 <div class="filter-form mt-5">
