@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 class AdminFactory extends Factory
 {
@@ -22,7 +23,11 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'username' => 'admin',
+            'name' => 'Thanh Tung Hoang',
+            'email' => 'admin@gmail.com',
+            'role' => '1',
+            'password' => Hash::make('12345678'),
         ];
     }
 }
