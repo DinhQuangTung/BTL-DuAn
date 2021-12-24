@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CourseFactory extends Factory
@@ -21,8 +22,10 @@ class CourseFactory extends Factory
      */
     public function definition()
     {
+        $userId = User::all()->pluck('id')->toArray();
         return [
             'title' => $this->faker->name(),
+            'teacher_id' => $userId[array_rand($userId, 1)],
             'logo_path' => $this->faker->imageUrl(),
             'description' => $this->faker->realText(),
             'price' => mt_rand(100, 300),

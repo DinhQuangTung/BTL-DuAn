@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CourseTag;
 use Illuminate\Database\Seeder;
 
 class CourseTagSeeder extends Seeder
@@ -13,6 +14,6 @@ class CourseTagSeeder extends Seeder
      */
     public function run()
     {
-        //
+        CourseTag::factory(1000)->create();
     }
 }

@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             'name' => 'Thanh Tung Hoang',
             'email' => 'admin@gmail.com',
             'role' => '2',
-            'password' => Hash::make('1'),
+            'password' => Hash::make('12345678'),
         ]);
     }
 }
