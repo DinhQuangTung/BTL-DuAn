@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('lessons.documents', DocumentController::class);
 
     Route::post('/documents/learned', [DocumentController::class, 'learn']);
+    Route::get('/documents/{id}/show', [DocumentController::class, 'show'])->name('documents.show');
 });
 
 Route::prefix('admin')->group(function () {

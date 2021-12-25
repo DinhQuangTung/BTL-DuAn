@@ -44,4 +44,11 @@ class DocumentController extends Controller
             'percentage' => $percentageProgress
         ]);
     }
+
+    public function show($id)
+    {
+        $document = Document::findOrFail($id);
+
+        return view('Documents.index', compact('document'));
+    }
 }
