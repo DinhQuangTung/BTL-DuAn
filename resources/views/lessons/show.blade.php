@@ -100,10 +100,10 @@
                                                         <p class="m-0">{{ $document->type }}</p>
                                                     </div>
                                                     <div class="col-md-8 d-flex align-items-center">
-                                                        <a class="document-name" href="{{ asset($document->file_path) }}" data-lesson-id="{{ $lesson->id }}" data-document-id="{{ $document->id }}" target="_blank">{{ $document->name }}</a>
+                                                        <a class="document-name" href="{{ route('documents.show', ['id' => $document->id]) }}" target="_self" data-lesson-id="{{ $lesson->id }}" data-document-id="{{ $document->id }}" target="_blank">{{ $document->name }}</a>
                                                     </div>
                                                     <div class="preview col-md-2">
-                                                        <a class="preview-button btn h-100" href="{{ asset($document->file_path) }}" data-lesson-id="{{ $lesson->id }}" data-document-id="{{ $document->id }}" target="_blank">Preview</a>
+                                                        <a class="preview-button btn h-100" href="{{ route('documents.show', ['id' => $document->id]) }}" target="_self" data-lesson-id="{{ $lesson->id }}" data-document-id="{{ $document->id }}" target="_blank">Preview</a>
                                                     </div>
                                                 </div>
                                             </div>

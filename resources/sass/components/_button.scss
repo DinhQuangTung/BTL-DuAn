@@ -20,3 +20,16 @@
       color: $text_color_card_content;
     }
   }
+
+.back-to-page {
+  height: 34px;
+  width: 152px;
+  background-color: $view_all_our_courses_color;
+  display: block;
+  text-align: center;
+  padding-top: 6px;
+  text-decoration: none;
+  color: white;
+  border-radius: 15px;
+  font-weight: bold;
+}
