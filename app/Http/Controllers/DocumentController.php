@@ -48,7 +48,9 @@ class DocumentController extends Controller
     public function show($id)
     {
         $document = Document::findOrFail($id);
+        $lesson = $document->lesson;
+        $course = $lesson->course;
 
-        return view('Documents.index', compact('document'));
+        return view('Documents.index', compact('document', 'lesson', 'course'));
     }
 }

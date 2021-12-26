@@ -12,6 +12,10 @@
                 >
                 <a href="{{ route('course.lessons.show', [$course->id, $lesson->id]) }}">{{ $lesson->title }}</a>
             @endif
+            @if (isset($document->id))
+                >
+                <a href="{{ route('documents.show', $document->id) }}">{{ $document->name }}</a>
+            @endif
         </span>
     </div>
 </div>
