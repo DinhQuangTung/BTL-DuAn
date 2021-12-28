@@ -114,6 +114,12 @@
                             </div>
                         </div>
                     </div>
+                    @if ($lessonPreviousId != 0)
+                        <a href="{{ route('course.lessons.show', ['course' => $course, 'lesson' => $lessonPreviousId])}}" type="button" class="btn button-submit float-left">❮ Previous</a>
+                    @endif
+                    @if ($lessonNextId != 0)
+                        <a href="{{ route('course.lessons.show', ['course' => $course, 'lesson' => $lessonNextId])}}" type="button" class="d-flex btn button-submit float-right">Next ❯</a>
+                    @endif
                 </div>
                 <div class="col-md-4 pr-0">
                     <div class="d-flex flex-column">
