@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Lesson;
+use stdClass;
 
 class LessonController extends Controller
 {
@@ -41,8 +42,26 @@ class LessonController extends Controller
      */
     public function show(Course $course, Lesson $lesson)
     {
+        $lessonsId = $course->lessons()->orderBy('id', 'asc')->pluck('id')->toArray();
+        foreach ($lessonsId as $key => $lessonId) {
+            if ($lessonId == $lesson->id) {
+                if (isset($lessonsId[$key - 1])) {
+                    $lessonPreviousId = $lessonsId[$key - 1];
+                } else {
+                    $lessonPreviousId = 0;
+                }
+                if (isset($lessonsId[$key + 1])) {
+                    $lessonNextId = $lessonsId[$key + 1];
+                } else {
+                    $lessonNextId = 0;
+                }
+                break;
+            }
+        }
+        // dd($lessonsId[1 + 1]);
+        // dd($lessons);
         $otherCourses = Course::inRandomOrder()->limit(config('config.numberOfOtherCourses'))->get();
-        return view('lessons.show', compact('course', 'lesson', 'otherCourses'));
+        return view('lessons.show', compact('course', 'lesson', 'otherCourses', 'lessonPreviousId', 'lessonNextId'));
     }
 
     public function destroy(Course $course, Lesson $lesson)
