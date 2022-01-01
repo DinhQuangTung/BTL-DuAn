@@ -6,4 +6,15 @@ $(function () {
       $('#loginNavTab').trigger('click');
     }
   })
+  
+  if ($("#courseImage").length != 0) {
+    var courseImage = document.getElementById("courseImage");
+  
+    courseImage.onchange = evt => {
+      const [file] = courseImage.files
+      if (file) {
+        uploadImg.src = URL.createObjectURL(file)
+      }
+    }
+  }
 });

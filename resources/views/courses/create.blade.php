@@ -31,7 +31,14 @@
                 <div class="col-md-6 mt-3 pl-0">
                     <div class="form-group">
                         <label for="courseImage" class="d-block course-label">Image <span style="color: red;">*</span></label>
-                        <input type="file" name="course_image" id="courseImage" required>
+                        <input type="file" name="course_image" class="hidden" id="courseImage">
+
+                        <div class="upload-div">
+                            <img src="{{ asset('img/img-default.png') }}" alt="img" id="uploadImg" class="upload-img">
+                            <label for="courseImage" class="upload-label">
+                                Change image
+                            </label>
+                        </div>
                         @error('course_image')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>

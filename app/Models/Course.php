@@ -210,7 +210,7 @@ class Course extends Model
             $logoPath = config('view.path_logo');
         }
 
-        Course::update([
+        $this->update([
             'title' => $request['course_title'],
             'description' => $request['course_description'],
             'price' => $request['course_price'],
