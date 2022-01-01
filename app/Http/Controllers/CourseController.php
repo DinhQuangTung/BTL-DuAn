@@ -40,25 +40,7 @@ class CourseController extends Controller
     {
         $course = new Course();
         $createdCourse = $course->createCourse($request);
-
-        $tagNames = $request['course_tag'];
-        $tags = Tag::all();
-
-        foreach ($tagNames as $tagName) {
-            $tmpTag = $tags->filter(function ($tag) use ($tagName) {
-                return $tag->name == $tagName;
-            })->first();
-
-            if (empty($tmpTag)) {
-                $newTag = new Tag();
-                $newTag->createTag($tagName);
-                $createdCourse->tags()->attach($newTag->id);
-            } else {
-                $createdCourse->tags()->attach($tmpTag->id);
-            }
-        }
-
-
+        $this->createCourseTagValue($request['course_tag'], $createdCourse);
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully');
     }
@@ -78,8 +60,9 @@ class CourseController extends Controller
         if (!empty(Auth::user())) {
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
                 $tags = Tag::get();
+                $selectedTags = $course->tags()->pluck('name')->toArray();
 
-                return view('courses.edit', compact('course', 'tags'));
+                return view('courses.edit', compact('course', 'tags', 'selectedTags'));
             } else {
                 return view('components.error');
             }
@@ -91,6 +74,9 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $course->updateCourse($request);
+
+        $course->tags()->detach();
+        $this->createCourseTagValue($request['course_tag'], $course);
 
         return redirect()->route('courses.show', [$course])->with('success', 'Course updated successfully');
     }
@@ -113,6 +99,25 @@ class CourseController extends Controller
             $course['course_status'] = true;
             $course->save();
             return 'approved';
+        }
+    }
+
+    public function createCourseTagValue($tagNames, $course)
+    {
+        $tags = Tag::all();
+
+        foreach ($tagNames as $tagName) {
+            $tmpTag = $tags->filter(function ($tag) use ($tagName) {
+                return $tag->name == $tagName;
+            })->first();
+
+            if (empty($tmpTag)) {
+                $newTag = new Tag();
+                $newTag->createTag($tagName);
+                $course->tags()->attach($newTag->id);
+            } else {
+                $course->tags()->attach($tmpTag->id);
+            }
         }
     }
 }
