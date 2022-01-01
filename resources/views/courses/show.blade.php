@@ -157,7 +157,7 @@
                             <div class="data price d-flex align-items-center">
                                 <i class="far fa-money-bill-alt"></i>
                                 <div class="ml-2 subject">Price</div>
-                                <div class="ml-2">:  free</div>
+                                <div class="ml-2">:  {{ $course->price }}</div>
                             </div>
                             
                             @if (empty($course->isJoined) == false && Auth::user()->role == '0')
