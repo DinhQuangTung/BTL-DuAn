@@ -126,31 +126,33 @@
                                 <i class="fas fa-tags"></i>
                                 <div class="ml-2 subject">Tag</div>
                                 <div class="ml-2">:</div>
-                                @foreach ($course->tags as $tag)
-                                    <form action="{{ route('courses.index') }}" method="GET">
-                                        <input type="text" class="d-none" name="tag" value="{{ $tag->id }}">
-                                        <button type="submit" class="random-tag-name p-0 mr-1">#{{ $tag->name }}</button>  
-                                    </form>                                  
-                                @endforeach
-                                @if (!empty(Auth::user()) && Auth::user()->role == 1 && Auth::id() == $course->teacher_id)
-                                    <form class="d-flex" action="{{ route('course-tags.store') }}" method="POST">
-                                        @csrf
-                                        <select class="get-value input-change form-control form-control-custom select-tag d-none text-dark p-0" id="selectTag" name="add_tag" style="width:100%">
-                                            <option value="">Tags</option>
-                                            @foreach ($allTags as $tag)
-                                                <option value="{{ $tag->id }}" @if ($tag->id == request('tag')) selected @endif>{{ $tag->name }}
-                                                </option>
-                                            @endforeach 
-                                        </select>
-                                        <a class="btn btn-update button-submit w-auto" id="addTag">
-                                            <span>+</span>
-                                        </a>
-                                        <input hidden="true" type="number" value="{{ $course->id }}" name="course_id">
-                                        <button class="btn btn-update button-submit w-auto d-none" id="summitTag">
-                                            <span>Add</span>
-                                        </button>
-                                    </form>
-                                @endif
+                                <div class="tag-group">
+                                    @foreach ($course->tags as $tag)
+                                        <form action="{{ route('courses.index') }}" method="GET">
+                                            <input type="text" class="d-none" name="tag" value="{{ $tag->id }}">
+                                            <button type="submit" class="random-tag-name p-0 mr-1">#{{ $tag->name }}</button>
+                                        </form>
+                                    @endforeach
+{{--                                    @if (!empty(Auth::user()) && Auth::user()->role == 1 && Auth::id() == $course->teacher_id)--}}
+{{--                                        <form class="d-flex" action="{{ route('course-tags.store') }}" method="POST">--}}
+{{--                                            @csrf--}}
+{{--                                            <select class="get-value input-change form-control form-control-custom select-tag d-none text-dark p-0" id="selectTag" name="add_tag" style="width:100%">--}}
+{{--                                                <option value="">Tags</option>--}}
+{{--                                                @foreach ($allTags as $tag)--}}
+{{--                                                    <option value="{{ $tag->id }}" @if ($tag->id == request('tag')) selected @endif>{{ $tag->name }}--}}
+{{--                                                    </option>--}}
+{{--                                                @endforeach--}}
+{{--                                            </select>--}}
+{{--                                            <a class="btn btn-update button-submit w-auto" id="addTag">--}}
+{{--                                                <span>+</span>--}}
+{{--                                            </a>--}}
+{{--                                            <input hidden="true" type="number" value="{{ $course->id }}" name="course_id">--}}
+{{--                                            <button class="btn btn-update button-submit w-auto d-none" id="summitTag">--}}
+{{--                                                <span>Add</span>--}}
+{{--                                            </button>--}}
+{{--                                        </form>--}}
+{{--                                    @endif--}}
+                                </div>
                             </div>
                             <div class="data price d-flex align-items-center">
                                 <i class="far fa-money-bill-alt"></i>
