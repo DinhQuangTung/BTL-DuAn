@@ -26,7 +26,7 @@ class CourseController extends Controller
         if (!empty(Auth::user())) {
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
                 $tags = Tag::get();
-                
+
                 return view('courses.create', compact('tags'));
             } else {
                 return view('components.error');
@@ -39,7 +39,26 @@ class CourseController extends Controller
     public function store(StoreCourseRequest $request)
     {
         $course = new Course();
-        $course->createCourse($request);
+        $createdCourse = $course->createCourse($request);
+
+        $tagNames = $request['course_tag'];
+        $tags = Tag::all();
+
+        foreach ($tagNames as $tagName) {
+            $tmpTag = $tags->filter(function ($tag) use ($tagName) {
+                return $tag->name == $tagName;
+            })->first();
+
+            if (empty($tmpTag)) {
+                $newTag = new Tag();
+                $newTag->createTag($tagName);
+                $createdCourse->tags()->attach($newTag->id);
+            } else {
+                $createdCourse->tags()->attach($tmpTag->id);
+            }
+        }
+
+
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully');
     }
@@ -59,7 +78,7 @@ class CourseController extends Controller
         if (!empty(Auth::user())) {
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
                 $tags = Tag::get();
-                
+
                 return view('courses.edit', compact('course', 'tags'));
             } else {
                 return view('components.error');
@@ -82,7 +101,7 @@ class CourseController extends Controller
 
         return redirect()->route('courses.index');
     }
-    
+
     public function approveCourse(Request $request)
     {
         $course = Course::where('id', $request['id'])->first();

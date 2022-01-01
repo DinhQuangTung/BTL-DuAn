@@ -20,7 +20,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
                         <label for="courseDescription" class="course-label">Description <span style="color: red;">*</span></label>
-                        <textarea type="text" name="course_description" rows="3" class="form-control" id="courseDescription" value="" required></textarea>
+                        <textarea type="text" name="course_description" rows="3" class="form-control" id="courseDescription" required></textarea>
                         @error('course_description')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -53,6 +53,19 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3 pl-0">
+                    <div class="form-group d-flex">
+                        <label for="courseDescription" class="course-label d-flex mr-2">Tags <span style="color: red;">*</span></label>
+                        <select class="get-value input-change form-control form-control-custom select-tag select-2-multiple" id="courseTag" name="course_tag[]" style="width:100%" data-placeholder="" multiple="multiple">
+                            <option value="">Tags</option>
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->name }}">
+                                    {{ $tag->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">

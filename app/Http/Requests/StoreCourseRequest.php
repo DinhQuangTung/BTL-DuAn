@@ -28,6 +28,7 @@ class StoreCourseRequest extends FormRequest
             'course_description' => ['required', 'max:255'],
             'course_image' => ['required', 'mimes:jpeg,png'],
             'course_price' => ['required', 'numeric'],
+            'course_tag' => ['required', 'array']
         ];
     }
 }

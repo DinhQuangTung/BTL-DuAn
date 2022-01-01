@@ -143,10 +143,12 @@
                                 <i class="fas fa-tags"></i>
                                 <div class="ml-2 subject">Tag</div>
                                 <div class="ml-2">:</div>
-                                @foreach ($course->tags as $tag)
-                                    <div class="ml-2">#</div>
-                                    <a href="#" class="random-tag-name">{{ $tag->name }}</a>                                
-                                @endforeach
+                                <div class="tag-group">
+                                    @foreach ($course->tags as $tag)
+                                        <div class="ml-2">#</div>
+                                        <a href="#" class="random-tag-name">{{ $tag->name }}</a>
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="data price d-flex align-items-center">
                                 <i class="far fa-money-bill-alt"></i>

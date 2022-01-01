@@ -27,17 +27,17 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-6 mt-3 pl-0">
-                    <div class="form-group">
-                        <label for="documentImage" class="course-label">Image:</label>
-                        <input type="file" name="document_image" id="documentImage">
-                        @error('document_image')
-                            <span class="invalid-feedback d-block" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
+{{--                <div class="col-md-6 mt-3 pl-0">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="documentImage" class="course-label">Image:</label>--}}
+{{--                        <input type="file" name="document_image" id="documentImage">--}}
+{{--                        @error('document_image')--}}
+{{--                            <span class="invalid-feedback d-block" role="alert">--}}
+{{--                                <strong>{{ $message }}</strong>--}}
+{{--                            </span>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
                         <label for="documentFile" class="course-label">File:</label>
