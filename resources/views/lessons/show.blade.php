@@ -94,7 +94,7 @@
                                             <div class="show-document-item">
                                                 <div class="row">
                                                     <div class="document-logo col-md-1 pr-0 d-flex justify-content-end">
-                                                        <img src="{{ asset($document->logo_path) }}" alt="doc-logo">
+                                                        <img src="{{ asset($document->logo_path) }}" alt="logo">
                                                     </div>
                                                     <div class="document-type col-md-1 d-flex align-items-center">
                                                         <p class="m-0">{{ $document->type }}</p>

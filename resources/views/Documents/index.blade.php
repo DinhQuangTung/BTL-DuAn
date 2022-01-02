@@ -8,7 +8,7 @@
 		@if($document->type == 'pdf')
 			<iframe src="{{ asset($document->file_path) }}" width="100%" height="800px">
 			</iframe>
-		@elseif($document->type == 'mp4' || $document->type == 'ogg')
+		@elseif($document->type == 'mp4')
 			<video controls width="100%" height="800px">
 				<source src="{{ asset($document->file_path) }}"
 						type="video/mp4">
