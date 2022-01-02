@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="account-management">
-        <div class="container-xl d-flex">
+        <div class="container-xl align-center">
             <ul class="nav nav-pills tab-bar" id="pillsTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="pill" href="#pillsUser">Users</a>
@@ -20,23 +20,26 @@
             </form>
             <ul class="nav nav-pills tab-bar" id="pillsTab" role="tablist">
                 <li class="nav-item">
-                    <a href="{{ route('users.show', [Auth::id()]) }}" class="nav-link">{{ Auth::user()->name }}</a>
+                    <a href="{{ route('users.show', [Auth::id()]) }}" class="btn nav-link">{{ Auth::user()->name }}</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle notification-bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle notification-bell {{ ($notificationsUnread > 0) ? 'bg-danger' : '' }}" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         <i class="far fa-bell active">
-                            <span class="notification-number">1<span>
+                            <span class="notification-number" id="unreadNotification">{{ $notificationsUnread }}<span>
                         </i>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown" id="dropdownMenuUser">
-                       
+                        @foreach ($notifications as $notification)                 
+                            <a class="dropdown-item text-wrap-noti {{ ($notification->checked == 0) ? 'check-notifications bg-warning' : '' }}" value="{{ $notification->id }}">{!! $notification->content !!}</a>
+                            <hr>
+                        @endforeach
                     </div>
                 </li>
                 <li class="nav-item">
-                    <form id="logoutForm" action="{{ route('admin.logout') }}" method="POST" class="nav-link">
+                    <form id="logoutForm" action="{{ route('admin.logout') }}" method="POST" class="nav-item">
                         @csrf
-                        <button type="submit" class="" id="logoutButton" class="m-0 text-center">Logout</button>
+                        <button type="submit" class="btn nav-link" id="logoutButton" class="m-0 text-center">Logout</button>
                     </form>
                 </li>
             </ul> 

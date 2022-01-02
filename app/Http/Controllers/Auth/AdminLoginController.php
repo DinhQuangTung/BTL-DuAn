@@ -40,7 +40,8 @@ class AdminLoginController extends Controller
 
     public function logout()
     {
-        dd(1);
-        auth()->user()->logout();
+        auth()->logout();
+        
+        return redirect()->route('admin.show_login')->with('success', "Logout successfully!");
     }
 }

@@ -4,9 +4,12 @@
   color: #566787;
   background: linear-gradient(to right, #e96443, #904e95);
   font-family: $font-UTM-BryantLG;
-  
-  .table-responsive {
-    margin: 50px 0;
+
+  .align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
   }
 
   form {
@@ -305,9 +308,6 @@
   }
 
   .nav-pills {
-    padding: 0 15px;
-    margin-top: 40px;
-    margin-bottom: 5.5px;
     
     .nav-link {
       color: #ffffff;
@@ -370,4 +370,16 @@
     color:white;
     text-decoration:none;
   }
+}
+
+.text-wrap-noti {
+	width: 15em; 
+	overflow: auto;
+	word-wrap: break-word;
+	padding: 0.25rem 1.5rem;
+  cursor: pointer;
+}
+
+.text-wrap-noti:active {
+  background-color: $button_color;
 }

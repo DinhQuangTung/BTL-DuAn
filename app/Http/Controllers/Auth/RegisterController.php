@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Notification;
 
 class RegisterController extends Controller
 {
@@ -39,6 +40,12 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = $this->create($request->all());
+        // dd($user);
+        Notification::create([
+            'type' => Notification::TYPE_USER_CREATE,
+            'target_id' => $user->id,
+            'content' => 'Đăng kí user: <span class="font-weight-bold font-italic">' .$user->username .'</span>',
+        ]);
         Auth::login($user);
         return redirect()->route('home')->with('success', 'Register success!');
     }

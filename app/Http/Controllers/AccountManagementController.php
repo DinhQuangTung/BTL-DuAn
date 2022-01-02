@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Notification;
 
 class AccountManagementController extends Controller
 {
@@ -15,8 +16,9 @@ class AccountManagementController extends Controller
         $numberOfTeachers = User::where('role', config('config.role.teacher'))->count();
         
         $courses = Course::filter($request)->paginate(config('config.pagination'), ['*'], 'course_page');
-        
-        return view('management.index', compact('users', 'numberOfUsers', 'numberOfTeachers', 'courses'));
+        $notifications = Notification::all();
+        $notificationsUnread = Notification::where('checked', 0)->count();
+        return view('management.index', compact('users', 'numberOfUsers', 'numberOfTeachers', 'courses', 'notifications', 'notificationsUnread'));
     }
 
     public function deleteUser(Request $request)
@@ -61,5 +63,16 @@ class AccountManagementController extends Controller
         Course::findOrFail($request['course_id'])->delete();
         
         return redirect('/admin/management#pillsCourse')->with('success', 'Successfully delete this course');
+    }
+
+    public function checkedNotification(Request $request)
+    {
+        $notification = Notification::findOrFail($request->id);
+        $notification->checked = 1;
+        $notification->save();
+
+        $notificationsUnread = Notification::where('checked', 0)->count();
+
+        return $notificationsUnread;
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\Tag;
 use App\Models\Lesson;
+use App\Models\Notification;
 use Auth;
 
 class CourseController extends Controller
@@ -38,7 +39,13 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $course = new Course();
-        $course->createCourse($request);
+        $course = $course->createCourse($request);
+
+        Notification::create([
+            'type' => Notification::TYPE_COURSE_CREATE,
+            'target_id' => $course->id,
+            'content' => 'Đăng kí khoá học: <span class="font-weight-bold font-italic">'.$course->title . '</span>'
+        ]);
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully');
     }
