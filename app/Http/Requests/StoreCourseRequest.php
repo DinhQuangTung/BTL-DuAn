@@ -26,7 +26,7 @@ class StoreCourseRequest extends FormRequest
         return [
             'course_title' => ['required', 'max:255'],
             'course_description' => ['required', 'max:255'],
-            'course_image' => ['required', 'mimes:jpeg,png'],
+            'course_image' => ['required', 'mimes:jpeg,png,jpg'],
             'course_price' => ['required', 'numeric'],
             'course_tag' => ['required', 'array']
         ];

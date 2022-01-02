@@ -17,4 +17,15 @@ $(function () {
       }
     }
   }
+  
+  if ($("#lessonImage").length != 0) {
+    var lessonImage = document.getElementById("lessonImage");
+  
+    lessonImage.onchange = evt => {
+      const [file] = lessonImage.files
+      if (file) {
+        uploadImg.src = URL.createObjectURL(file)
+      }
+    }
+  }
 });

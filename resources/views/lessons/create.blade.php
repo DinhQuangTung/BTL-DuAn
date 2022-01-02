@@ -31,7 +31,14 @@
                 <div class="col-md-6 mt-3 pl-0">
                     <div class="form-group">
                         <label for="lessonImage" class="d-block course-label">Image <span style="color: red;">*</span></label>
-                        <input type="file" name="lesson_image" id="lessonImage" required>
+                        <input type="file" name="lesson_image" class="hidden" id="lessonImage">
+
+                        <div class="upload-div">
+                            <img src="{{ asset('img/img-default.png') }}" alt="img" id="uploadImg" class="upload-img">
+                            <label for="lessonImage" class="upload-label">
+                                Change image
+                            </label>
+                        </div>
                         @error('lesson_image')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -41,9 +48,9 @@
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
-                        <label for="lessonContent" class="course-label">Content <span style="color: red;">*</span></label>
-                        <textarea rows="3" type="text" name="lesson_content" class="form-control" id="lessonContent" value="" required></textarea>
-                        @error('lesson_content')
+                        <label for="lessonContent" class="course-label">Description <span style="color: red;">*</span></label>
+                        <textarea rows="3" type="text" name="lesson_description" class="form-control" id="lessonContent" value="" required></textarea>
+                        @error('lesson_description')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
