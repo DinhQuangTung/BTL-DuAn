@@ -96,7 +96,7 @@ class Lesson extends Model
             'title' => $request['lesson_title'],
             'image' => $logoPath,
             'requirement' => $request['lesson_requirement'],
-            'content' => $request['lesson_content'],
+            'description' => $request['lesson_description'],
             'learn_time' => $request['lesson_learn_time']
         ]);
     }

@@ -27,7 +27,7 @@ class StoreLessonRequest extends FormRequest
             'lesson_title' => ['required', 'max:255'],
             'lesson_requirement' => ['required', 'max:255'],
             'lesson_image' => ['required', 'mimes:jpeg,png,jpg'],
-            'lesson_content' => ['required', 'max:255'],
+            'lesson_description' => ['required', 'max:255'],
             'lesson_learn_time' => ['required', 'numeric'],
         ];
     }

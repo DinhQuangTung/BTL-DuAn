@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLessonRequest;
+use App\Http\Requests\UpdateLessonRequest;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Lesson;
@@ -28,7 +29,7 @@ class LessonController extends Controller
         return view('lessons.edit', compact('course', 'lesson'));
     }
 
-    public function update(Request $request, Course $course, Lesson $lesson)
+    public function update(UpdateLessonRequest $request, Course $course, Lesson $lesson)
     {
         $lesson->updateLesson($request, $course->id);
 
