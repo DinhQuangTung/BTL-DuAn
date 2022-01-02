@@ -21,7 +21,7 @@
                         <th class="column-title">Title</th>
                         <th class="column-title">Created By</th>
                         <th class="column-title">Approval</th>
-                        <th class="column-title">Phone</th>
+                        <th class="column-title">Price</th>
                         <th class="column-title">Actions</th>
                     </tr>
                 </thead>

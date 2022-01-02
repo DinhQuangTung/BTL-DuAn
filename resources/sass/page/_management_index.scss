@@ -35,11 +35,13 @@
     font-size: 0.75em;
     font-weight: 700;
     line-height: 1;
-    color: $text_navbar_color;
+    color: #ffffff;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.45rem;
+    border: 0;
+    background: #435d7d;
 }
             
   .table-title {        
@@ -369,6 +371,25 @@
     border-radius: 50%;
     color:white;
     text-decoration:none;
+  }
+
+  .admin-navbar {
+    max-width: 1440px;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .dropdown-menu {
+    font-size: 15px;
+    border: 0 !important;
+    width: 100%;
+  }
+
+  .dropdown-item {
+    font-size: 18px;
   }
 }
 
