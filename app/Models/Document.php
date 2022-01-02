@@ -34,12 +34,21 @@ class Document extends Model
 
     public function createDocument($request, $lessonId)
     {
-        if (!empty($request['document_image'])) {
-            $path = $request->file('document_image')->store('images', 's3');
-            $logoPath = Storage::disk('s3')->url($path);
+        $fileType = $request['document_file']->getClientOriginalExtension();
+        if ($fileType == "pdf") {
+            $logoPath = 'img/pdf-icon.png';
+        } elseif ($fileType == 'mp4') {
+            $logoPath = 'img/video-icon.png';
         } else {
-            $logoPath = null;
+            $logoPath = 'img/doc-icon.png';
         }
+
+//        if (!empty($request['document_image'])) {
+//            $path = $request->file('document_image')->store('images', 's3');
+//            $logoPath = Storage::disk('s3')->url($path);
+//        } else {
+//            $logoPath = null;
+//        }
 
         if (!empty($request['document_file'])) {
             $path = $request->file('document_file')->store('documents', 's3');
@@ -49,11 +58,11 @@ class Document extends Model
         }
 
         Document::create([
-           'lesson_id' => $lessonId,
-           'name' => $request['document_name'],
-           'type' => $request['document_type'],
-           'logo_path' => $logoPath,
-           'file_path' => $filePath
+            'lesson_id' => $lessonId,
+            'name' => $request['document_name'],
+            'type' => $fileType,
+            'logo_path' => $logoPath,
+            'file_path' => $filePath
         ]);
     }
 }

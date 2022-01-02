@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateDocumentRequest;
 use App\Models\DocumentUser;
 use App\Models\Lesson;
 use App\Models\Course;
@@ -16,7 +17,7 @@ class DocumentController extends Controller
         return view('lessons.documents.create', compact('lesson'));
     }
 
-    public function store(Request $request, Lesson $lesson)
+    public function store(CreateDocumentRequest $request, Lesson $lesson)
     {
         $course = $lesson->course;
 
