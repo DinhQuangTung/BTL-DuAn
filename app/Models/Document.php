@@ -34,10 +34,10 @@ class Document extends Model
 
     public function createDocument($request, $lessonId)
     {
-        $fileType = $request->document_file->getClientOriginalExtension();
+        $fileType = $request['document_file']->getClientOriginalExtension();
         if ($fileType == "pdf") {
-            $logoPath = 'pdf-icon.png';
-        } else if ($fileType == 'mp4') {
+            $logoPath = 'img/pdf-icon.png';
+        } elseif ($fileType == 'mp4') {
             $logoPath = 'img/video-icon.png';
         } else {
             $logoPath = 'img/doc-icon.png';
