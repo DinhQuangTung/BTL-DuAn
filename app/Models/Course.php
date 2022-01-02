@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Notification;
 use stdClass;
 
 class Course extends Model
@@ -36,6 +37,11 @@ class Course extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'course_tags', 'course_id', 'tag_id')->withTimestamps();
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'target_id');
     }
 
     public function getNumberStudentAttribute()

@@ -56,6 +56,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/management/users/delete', [AccountManagementController::class, 'deleteUser'])->name('delete_user')->middleware(['auth', 'admin']);
     Route::post('/management/users/edit', [AccountManagementController::class, 'editUser'])->name('edit_user')->middleware(['auth', 'admin']);
     Route::post('/management/courses/delete', [AccountManagementController::class, 'deleteCourse'])->name('delete_course')->middleware(['auth', 'admin']);
+    Route::get('/check-notification/{id}', [AccountManagementController::class, 'checkedNotification'])->middleware(['auth', 'admin']);
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {

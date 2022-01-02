@@ -32,13 +32,17 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle notification-bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle notification-bell {{ ($notificationsUnread > 0) ? 'bg-danger' : '' }}" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <i class="far fa-bell active">
-                                <span class="notification-number">1<span>
+                                <span class="notification-number" id="unreadNotification">{{ $notificationsUnread }}<span>
                             </i>
                         </a>
+
                         <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown" id="dropdownMenuUser">
-                        
+                            @foreach ($notifications as $notification)                 
+                                <a class="dropdown-item text-wrap-noti {{ ($notification->checked == 0) ? 'check-notifications bg-warning' : '' }}" value="{{ $notification->id }}">{!! $notification->content !!}</a>
+                                <hr>
+                            @endforeach
                         </div>
                     </li>
                 </ul> 
