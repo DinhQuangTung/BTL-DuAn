@@ -19,4 +19,11 @@ class Tag extends Model
     {
         return $this->belongsToMany(Course::class, 'course_tags', 'course_id', 'tag_id')->withTimestamps();
     }
+
+    public function createTag($name)
+    {
+        self::create([
+            'name' => $name
+        ]);
+    }
 }

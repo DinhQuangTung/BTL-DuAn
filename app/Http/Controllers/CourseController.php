@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\User;
@@ -26,7 +28,7 @@ class CourseController extends Controller
         if (!empty(Auth::user())) {
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
                 $tags = Tag::get();
-                
+
                 return view('courses.create', compact('tags'));
             } else {
                 return view('components.error');
@@ -36,16 +38,18 @@ class CourseController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
         $course = new Course();
-        $course = $course->createCourse($request);
+        $createdCourse = $course->createCourse($request);
 
         Notification::create([
             'type' => Notification::TYPE_COURSE_CREATE,
-            'target_id' => $course->id,
-            'content' => 'Đăng kí khoá học: <span class="font-weight-bold font-italic">'.$course->title . '</span>'
+            'target_id' => $createdCourse->id,
+            'content' => 'Đăng kí khoá học: <span class="font-weight-bold font-italic">'.$createdCourse->title . '</span>'
         ]);
+
+        $this->createCourseTagValue($request['course_tag'], $createdCourse);
 
         return redirect()->route('courses.index')->with('success', 'Course created successfully');
     }
@@ -65,8 +69,9 @@ class CourseController extends Controller
         if (!empty(Auth::user())) {
             if (Auth::user()->role == User::ROLE_ADMIN || Auth::user()->role == User::ROLE_TEACHER) {
                 $tags = Tag::get();
-                
-                return view('courses.edit', compact('course', 'tags'));
+                $selectedTags = $course->tags()->pluck('name')->toArray();
+
+                return view('courses.edit', compact('course', 'tags', 'selectedTags'));
             } else {
                 return view('components.error');
             }
@@ -75,9 +80,12 @@ class CourseController extends Controller
         }
     }
 
-    public function update(Request $request, Course $course)
+    public function update(UpdateCourseRequest $request, Course $course)
     {
         $course->updateCourse($request);
+
+        $course->tags()->detach();
+        $this->createCourseTagValue($request['course_tag'], $course);
 
         return redirect()->route('courses.show', [$course])->with('success', 'Course updated successfully');
     }
@@ -88,7 +96,7 @@ class CourseController extends Controller
 
         return redirect()->route('courses.index');
     }
-    
+
     public function approveCourse(Request $request)
     {
         $course = Course::where('id', $request['id'])->first();
@@ -100,6 +108,25 @@ class CourseController extends Controller
             $course['course_status'] = true;
             $course->save();
             return 'approved';
+        }
+    }
+
+    public function createCourseTagValue($tagNames, $course)
+    {
+        $tags = Tag::all();
+
+        foreach ($tagNames as $tagName) {
+            $tmpTag = $tags->filter(function ($tag) use ($tagName) {
+                return $tag->name == $tagName;
+            })->first();
+
+            if (empty($tmpTag)) {
+                $newTag = new Tag();
+                $newTag->createTag($tagName);
+                $course->tags()->attach($newTag->id);
+            } else {
+                $course->tags()->attach($tmpTag->id);
+            }
         }
     }
 }

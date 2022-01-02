@@ -1,5 +1,10 @@
 $(function () {
   $('.select-2').select2();
+  
+  $('.select-2-multiple').select2({
+    tags: true,
+    tokenSeparators: [',', ' '],
+  });
 
   $('#resetFilter').on('click', function () {
     $('.get-value').val('');

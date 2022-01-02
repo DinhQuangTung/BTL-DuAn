@@ -33,5 +33,10 @@
     "/img/why_hpl_background.png": "/img/why_hpl_background.png",
     "/img/yellow_star.png": "/img/yellow_star.png",
     "/fonts/utm_bryantlg-webfont.woff": "/fonts/utm_bryantlg-webfont.woff",
-    "/fonts/utm_bryantlg-webfont.woff2": "/fonts/utm_bryantlg-webfont.woff2"
+    "/fonts/utm_bryantlg-webfont.woff2": "/fonts/utm_bryantlg-webfont.woff2",
+    "/img/default-img.jpg": "/img/default-img.jpg",
+    "/img/doc-icon.png": "/img/doc-icon.png",
+    "/img/img-default.png": "/img/img-default.png",
+    "/img/pdf-icon.png": "/img/pdf-icon.png",
+    "/img/video-icon.png": "/img/video-icon.png"
 }

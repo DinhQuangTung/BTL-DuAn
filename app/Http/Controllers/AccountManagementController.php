@@ -15,7 +15,7 @@ class AccountManagementController extends Controller
         $numberOfUsers = User::all()->count();
         $numberOfTeachers = User::where('role', config('config.role.teacher'))->count();
         
-        $courses = Course::filter($request)->paginate(config('config.pagination'), ['*'], 'course_page');
+        $courses = Course::orderBy('created_at', 'desc')->filter($request)->paginate(config('config.pagination'), ['*'], 'course_page');
         $notifications = Notification::all();
         $notificationsUnread = Notification::where('checked', 0)->count();
         return view('management.index', compact('users', 'numberOfUsers', 'numberOfTeachers', 'courses', 'notifications', 'notificationsUnread'));

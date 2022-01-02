@@ -94,7 +94,7 @@
                                             <div class="show-document-item">
                                                 <div class="row">
                                                     <div class="document-logo col-md-1 pr-0 d-flex justify-content-end">
-                                                        <img src="{{ asset($document->logo_path) }}" alt="doc-logo">
+                                                        <img src="{{ asset($document->logo_path) }}" alt="logo">
                                                     </div>
                                                     <div class="document-type col-md-1 d-flex align-items-center">
                                                         <p class="m-0">{{ $document->type }}</p>
@@ -143,10 +143,12 @@
                                 <i class="fas fa-tags"></i>
                                 <div class="ml-2 subject">Tag</div>
                                 <div class="ml-2">:</div>
-                                @foreach ($course->tags as $tag)
-                                    <div class="ml-2">#</div>
-                                    <a href="#" class="random-tag-name">{{ $tag->name }}</a>                                
-                                @endforeach
+                                <div class="tag-group">
+                                    @foreach ($course->tags as $tag)
+                                        <div class="ml-2">#</div>
+                                        <a href="#" class="random-tag-name">{{ $tag->name }}</a>
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="data price d-flex align-items-center">
                                 <i class="far fa-money-bill-alt"></i>
