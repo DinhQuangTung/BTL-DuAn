@@ -19,6 +19,10 @@ class Course extends Model
         'title', 'description', 'logo_path', 'learn_times', 'lesson_learned', 'price', 'teacher_id', 'course_status'
     ];
 
+    protected $appends = [
+      'rating_overview',
+    ];
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class, 'course_id');

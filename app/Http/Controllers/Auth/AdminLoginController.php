@@ -46,8 +46,6 @@ class AdminLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect('/admin/login');
+        return $request->wantsJson() ? new JsonResponse([], 204) : redirect('/admin/login');
     }
 }
