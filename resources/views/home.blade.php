@@ -26,48 +26,20 @@
         <!-- Main courses -->
         <div class="main-courses container-fluid p-0 d-flex justify-content-center ">
             <div class="row col-lg-10 col-sm-12 mb-0">
-                <div class="main-courses-item col-sm-4 p-sm-0 d-flex justify-content-center">
-                    <div class="main-courses-item-card card h-100 ">
-                        <div class="front-end-image card-header d-flex align-items-center justify-content-center">
-                            <img class="custom-image" src="{{ asset('img/rectangle_7.png') }}" alt="HTML/CSS/js">                          
-                        </div>
-                        <div class="main-courses-item-card-content card-body d-flex flex-column align-items-center">
-                            <p class="card-content-title card-title">HTML/CSS/js Tutorial</p>
-                            <p class="card-content-body card-text">I knew hardly anything about HTML, JS, and CSS before entering New
-                            Media. I had coded quite a bit, but never touched
-                            anything in regards to web development.</p>
-                            <a href="#" class="btn courses-button d-flex justify-content-center align-items-center">Take This Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="main-courses-item col-sm-4 p-sm-0 d-flex justify-content-center">
-                    <div class="main-courses-item-card card h-100">
-                        <div class="laravel-image card-header d-flex align-items-center justify-content-center">
-                            <img class="custom-image" src="{{ asset('img/laravel_1_logo_black_and_white_1.png') }}" alt="laravel">                         
-                        </div>
-                        <div class="main-courses-item-card-content card-body d-flex flex-column align-items-center">
-                            <p class="card-content-title card-title">LARAVEL Tutorial</p>
-                            <p class="card-content-body card-text">I knew hardly anything about HTML, JS, and CSS before entering New
-                            Media. I had coded quite a bit, but never touched
-                            anything in regards to web development.</p>
-                            <a href="#" class="btn courses-button d-flex justify-content-center align-items-center">Take This Course</a>
+                @foreach($mainCourses as $course)
+                    <div class="main-courses-item col-sm-4 p-sm-0 d-flex justify-content-center">
+                        <div class="main-courses-item-card card h-100 ">
+                            <div class="front-end-image card-header d-flex align-items-center justify-content-center p-0">
+                                <img class="custom-image" src="{{ asset($course->logo_path) }}" alt="" style="width: 100%; height: 100%; border-radius: 15px 15px 0px 0px;">
+                            </div>
+                            <div class="main-courses-item-card-content card-body d-flex flex-column align-items-center">
+                                <a href="{{ route('courses.show', [$course->id]) }}" class="card-content-title card-title">{{ $course->title }}</a>
+                                <p class="card-content-body card-text">{{ $course->description }}</p>
+                                <a href="{{ route('courses.show', [$course->id]) }}" class="btn courses-button d-flex justify-content-center align-items-center">Take This Course</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="main-courses-item col-sm-4 p-sm-0 d-flex justify-content-center">
-                    <div class="main-courses-item-card card h-100">
-                        <div class="php-image card-header d-flex align-items-center justify-content-center">
-                            <img class="custom-image" src="{{ asset('img/rectangle_15.png') }}" alt="php">                          
-                        </div>
-                        <div class="main-courses-item-card-content card-body d-flex flex-column align-items-center">
-                            <p class="card-content-title card-title">PHP Tutorial</p>
-                            <p class="card-content-body card-text">I knew hardly anything about HTML, JS, and CSS before entering New
-                            Media. I had coded quite a bit, but never touched
-                            anything in regards to web development.</p>
-                            <a href="#" class="btn courses-button d-flex justify-content-center align-items-center">Take This Course</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>           
         </div>
 
@@ -77,51 +49,21 @@
             <div class="other-courses-title-underline mx-auto"></div>
             <div class="row-cover h-100 d-flex justify-content-center">
                 <div class="row mb-0 col-lg-10 col-sm-12">
-                    <div class="other-courses-item col-sm-4 p-sm-0 d-flex justify-content-center">
-                        <div class="other-courses-item-card card h-100 ">
-                            <div class="css-image cover-image d-flex align-items-center justify-content-center">
-                                <img class="custom-image" src="{{ asset('img/css_course.png') }}" alt="css">
-                            </div>
-                            <div class="other-courses-item-card-content card-body d-flex flex-column align-items-center">
-                                <p class="card-content-title card-title">CSS Tutorial</p>
-                                <p class="card-content-body card-text">I knew hardly anything about HTML, JS, and CSS before entering
-                                    New Media. <br> I had coded quite a bit, but never touched
-                                    anything in regards to web development.</p>
-                                <a href="#" class="btn courses-button d-flex justify-content-center align-items-center">Take This
-                                    Course</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="other-courses-item col-sm-4 p-sm-0 d-flex justify-content-center">
-                        <div class="other-courses-item-card card h-100">
-                            <div class="rails-image cover-image d-flex align-items-center justify-content-center">
-                                <img class="custom-image" src="{{ asset('img/rails_course.png') }}" alt="rails">
-                            </div>
-                            <div class="other-courses-item-card-content card-body d-flex flex-column align-items-center">
-                                <p class="card-content-title card-title">Ruby on rails Tutorial</p>
-                                <p class="card-content-body card-text">I knew hardly anything about HTML, JS, and CSS before entering
-                                    New Media. <br> I had coded quite a bit, but never touched
-                                    anything in regards to web development.</p>
-                                <a href="#" class="btn courses-button d-flex justify-content-center align-items-center">Take This
-                                    Course</a>
+                    @foreach($otherCourses as $course)
+                        <div class="other-courses-item col-sm-4 p-sm-0 d-flex justify-content-center">
+                            <div class="other-courses-item-card card h-100 ">
+                                <div class="css-image cover-image d-flex align-items-center justify-content-center">
+                                    <img class="custom-image" src="{{ asset($course->logo_path) }}" alt="" style="width: 100%; height: 100%; border-radius: 15px 15px 0px 0px;">
+                                </div>
+                                <div class="other-courses-item-card-content card-body d-flex flex-column align-items-center">
+                                    <a href="{{ route('courses.show', [$course->id]) }}" class="card-content-title card-title">{{ $course->title }}</a>
+                                    <p class="card-content-body card-text">{{ $course->description }}</p>
+                                    <a href="{{ route('courses.show', [$course->id]) }}" class="btn courses-button d-flex justify-content-center align-items-center">Take This
+                                        Course</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="other-courses-item col-sm-4 p-sm-0 d-flex justify-content-center">
-                        <div class="other-courses-item-card card h-100">
-                            <div class="java-image cover-image d-flex align-items-center justify-content-center">
-                                <img class="custom-image" src="{{ asset('img/java_1.png') }}" alt="java">
-                            </div>
-                            <div class="other-courses-item-card-content card-body d-flex flex-column align-items-center">
-                                <p class="card-content-title card-title">Java Tutorial</p>
-                                <p class="card-content-body card-text">I knew hardly anything about HTML, JS, and CSS before entering
-                                    New Media. <br> I had coded quite a bit, but never touched
-                                    anything in regards to web development.</p>
-                                <a href="#" class="btn courses-button d-flex justify-content-center align-items-center">Take This
-                                    Course</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <a class="view-all-our-courses container d-flex justify-content-center" href="{{ route('courses.index') }}">
