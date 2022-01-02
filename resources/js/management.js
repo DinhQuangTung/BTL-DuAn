@@ -47,3 +47,44 @@ $('.btn-course').on('click', function () {
   console.log(userId);
   $('.value-id').attr('value', userId);
 });
+
+$(".btn-approve").on('click', function(){
+  var post = $(this);
+  var courseId = $(this).val();
+  $.ajax({
+    method: "POST",
+    url: "/admin/approve-course/" + courseId,
+    data: $(this).val(),
+    success : function(response){
+        post.text(response);
+        if (response == 'approved') {
+            post.addClass('bg-gradient-success');
+        } else {
+            post.removeClass('bg-gradient-success');
+        }
+    }
+  });
+});
+
+$(".check-notifications").on('click', function(){
+  var post = $(this);
+  var notificationId = $(this).attr('value');
+  console.log(notificationId);
+  $.ajax({
+    method: "GET",
+    url: "/admin/check-notification/" + notificationId,
+    data: $(this).attr('value'),
+    success : function(response){
+      alert(response);
+      $('#unreadNotification').text(response);
+      post.removeClass('bg-warning');
+      if (response == 0) {
+        $('#navbarDropdown').removeClass('bg-danger');
+      }
+    },
+    error : function(response){
+      alert('huy');
+      console.log(response);
+    }
+  });
+});
