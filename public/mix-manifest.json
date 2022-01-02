@@ -4,6 +4,8 @@
     "/img/background-main.jpeg": "/img/background-main.jpeg",
     "/img/become_a_member.png": "/img/become_a_member.png",
     "/img/css_course.png": "/img/css_course.png",
+    "/img/default-img.jpg": "/img/default-img.jpg",
+    "/img/doc-icon.png": "/img/doc-icon.png",
     "/img/dropdown_arrow.png": "/img/dropdown_arrow.png",
     "/img/email_icon.png": "/img/email_icon.png",
     "/img/fb_icon.png": "/img/fb_icon.png",
@@ -15,6 +17,7 @@
     "/img/hapo_learn_header.png": "/img/hapo_learn_header.png",
     "/img/hapo_logo.png": "/img/hapo_logo.png",
     "/img/hapo_logo_message.png": "/img/hapo_logo_message.png",
+    "/img/img-default.png": "/img/img-default.png",
     "/img/info_avavtar.png": "/img/info_avavtar.png",
     "/img/java_1.png": "/img/java_1.png",
     "/img/join_us.jpg": "/img/join_us.jpg",
@@ -35,10 +38,5 @@
     "/img/why_hpl_background.png": "/img/why_hpl_background.png",
     "/img/yellow_star.png": "/img/yellow_star.png",
     "/fonts/utm_bryantlg-webfont.woff": "/fonts/utm_bryantlg-webfont.woff",
-    "/fonts/utm_bryantlg-webfont.woff2": "/fonts/utm_bryantlg-webfont.woff2",
-    "/img/default-img.jpg": "/img/default-img.jpg",
-    "/img/doc-icon.png": "/img/doc-icon.png",
-    "/img/img-default.png": "/img/img-default.png",
-    "/img/pdf-icon.png": "/img/pdf-icon.png",
-    "/img/video-icon.png": "/img/video-icon.png"
+    "/fonts/utm_bryantlg-webfont.woff2": "/fonts/utm_bryantlg-webfont.woff2"
 }
