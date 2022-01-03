@@ -58,9 +58,9 @@ $(".btn-approve").on('click', function(){
     success : function(response){
         post.text(response);
         if (response == 'approved') {
-            post.addClass('bg-gradient-success');
+            post.removeClass('bg-warning');
         } else {
-            post.removeClass('bg-gradient-success');
+            post.addClass('bg-warning');
         }
     }
   });
@@ -75,11 +75,11 @@ $(".check-notifications").on('click', function(){
     url: "/admin/check-notification/" + notificationId,
     data: $(this).attr('value'),
     success : function(response){
-      alert(response);
+      // alert(response);
       $('#unreadNotification').text(response);
       post.removeClass('bg-warning');
       if (response == 0) {
-        $('#navbarDropdown').removeClass('bg-danger');
+        $('#navbarDropdownNoti').removeClass('bg-danger');
       }
     },
     error : function(response){

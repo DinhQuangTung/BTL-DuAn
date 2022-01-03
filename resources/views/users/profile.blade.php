@@ -44,14 +44,26 @@
                         <div class="underline"></div>
                         <div class="show-my-list-courses d-flex justify-content-center">
                             <div class="row">
-                                @foreach ($user->my_courses as $course)
-                                    <a href="{{route('courses.show', [$course->id])}}" class="my-course-item d-flex flex-column" target="_blank">
-                                        <div class="course-logo">
-                                            <img src="{{ $course->logo_path }}" alt="my-course-logo">
-                                        </div>
-                                        <div class="course-name text-center">{{ $course->title }}</div>
-                                    </a>
-                                @endforeach
+                                @if(!empty(auth()->user()) && auth()->user()->role == '0')
+                                    @foreach ($user->my_courses as $course)
+                                        <a href="{{route('courses.show', [$course->id])}}" class="my-course-item d-flex flex-column" target="_blank">
+                                            <div class="course-logo">
+                                                <img src="{{ $course->logo_path }}" alt="my-course-logo">
+                                            </div>
+                                            <div class="course-name text-center">{{ $course->title }}</div>
+                                        </a>
+                                    @endforeach
+                                @endif
+                                @if(!empty(auth()->user()) && auth()->user()->role == '1')
+                                    @foreach ($coursesOfTeacher as $course)
+                                            <a href="{{route('courses.show', [$course->id])}}" class="my-course-item d-flex flex-column" target="_blank">
+                                                <div class="course-logo">
+                                                    <img src="{{ $course->logo_path }}" alt="my-course-logo">
+                                                </div>
+                                                <div class="course-name text-center">{{ $course->title }}</div>
+                                            </a>
+                                    @endforeach
+                                @endif
                                 <a href="{{ route('courses.index') }}" class="add-course d-flex flex-column">
                                     <div class="add-course-top d-flex justify-content-center align-items-center">
                                         <i class="fas fa-plus"></i>

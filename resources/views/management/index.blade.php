@@ -13,7 +13,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-8 d-flex justify-content-end">
+                <div class="col-8 d-flex">
                     <form class="managementSearch" action="{{ route('management.index') }}" method="GET">
                         <div class="d-flex justify-content-center h-100">
                             <div class="search-bar">
@@ -35,13 +35,13 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle notification-bell {{ ($notificationsUnread > 0) ? 'bg-danger' : '' }}" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdownNoti" class="nav-link dropdown-toggle notification-bell {{ ($notificationsUnread > 0) ? 'bg-danger' : '' }}" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="far fa-bell active">
                                     <span class="notification-number" id="unreadNotification">{{ $notificationsUnread }}<span>
                                 </i>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown" id="dropdownMenuUser">
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownNoti" id="dropdownMenuUser">
                                 @foreach ($notifications as $notification)                 
                                     <a class="dropdown-item text-wrap-noti {{ ($notification->checked == 0) ? 'check-notifications bg-warning' : '' }}" value="{{ $notification->id }}">{!! $notification->content !!}</a>
                                     <hr>

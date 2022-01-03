@@ -40,7 +40,7 @@
                             <td class="row-content">
                                 <!-- <form method="post" action="{{ route('approve_course', ['id' => $course])}}">
                                     @csrf -->
-                                    <button class="btn-approve badge float-none {{ $course->approval_status == 'approved' ? 'bg-gradient-success' : ''}}" type="submit" value="{{$course->id}}">{{ $course->approval_status }}</button>
+                                    <button class="btn-approve badge float-none {{ $course->approval_status == 'approved' ? '' : 'bg-warning'}}" type="submit" value="{{$course->id}}">{{ $course->approval_status }}</button>
                                 <!-- </form> -->
                             </td>
                             <td class="row-content">{{ $course->teacher_phone }}</td>
