@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="show-list-documents d-flex flex-column">
                                         <form action="{{ route('lessons.documents.create', [$lesson]) }}" method="GET">
-                                            <button type="submit" class="btn btn-update button-submit w-auto">
+                                            <button type="submit" class="btn btn-update button-submit w-auto mb-3">
                                                 <svg class="appWrapper-Header-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><g fill="none" fill-rule="evenodd"><path stroke="#FFBA00" stroke-width=".5" d="M1 1h28v28H1z" opacity=".01"></path><path class="svg-fill" fill="#fff" d="M16.765 2.312a.759.759 0 1 1 0 1.518H6.873a1.88 1.88 0 0 0-1.877 1.877v16.438a1.88 1.88 0 0 0 1.877 1.877H23.31a1.88 1.88 0 0 0 1.877-1.877V11.8a.76.76 0 0 1 1.518 0v10.344a3.399 3.399 0 0 1-3.395 3.395H6.873a3.4 3.4 0 0 1-3.396-3.395V5.707a3.4 3.4 0 0 1 3.396-3.395h9.892zm6.022.21c.273-.1.564-.078.835-.038.276.042.57.205.83.461l.54.54 1.117 1.117c.24.24.394.497.46.766a1.68 1.68 0 0 1-.4 1.545l-.058.062c-.344.352-.7.707-1.048 1.05l-.631.63-6.33 6.328-.488.493-.038.04c-.307.31-.621.628-.939.932-.153.148-.339.219-.619.236l-3.014.184h-.03a.719.719 0 0 1-.484-.218c-.158-.156-.249-.358-.24-.543l.135-3.097c.016-.253.095-.443.248-.598l.157-.16.003-.002.082-.081 5.416-5.415c.576-.577 1.166-1.167 1.747-1.745l1.68-1.682c.144-.146.27-.275.397-.396.188-.181.388-.304.672-.408zm.493 1.428l-.221.219c-.153.151-.306.305-.457.456l-.536.537-8.151 8.152-.086 1.957 1.906-.115.312-.312.226-.224.05-.049.385-.38 8.401-8.403-1.211-1.209a8.233 8.233 0 0 1-.172-.175l-.027-.029c-.065-.068-.13-.137-.2-.206l-.22-.219z"></path></g></svg>
                                                 <span>Add</span>
                                             </button>
@@ -99,12 +99,13 @@
                                                     <div class="document-type col-md-1 d-flex align-items-center">
                                                         <p class="m-0">{{ $document->type }}</p>
                                                     </div>
-                                                    <div class="col-md-8 d-flex align-items-center">
+                                                    <div class="col-md-7 d-flex align-items-center">
                                                         <a class="document-name" href="{{ route('documents.show', ['id' => $document->id]) }}" target="_self" data-lesson-id="{{ $lesson->id }}" data-document-id="{{ $document->id }}" target="_blank">{{ $document->name }}</a>
                                                     </div>
-                                                    <div class="preview col-md-2">
+                                                    <div class="preview col-md-2 d-flex justify-content-end">
                                                         <a class="preview-button btn h-100" href="{{ route('documents.show', ['id' => $document->id]) }}" target="_self" data-lesson-id="{{ $lesson->id }}" data-document-id="{{ $document->id }}" target="_blank">Preview</a>
                                                     </div>
+                                                    <a href="#deleteDocumentModal" class="delete-document btn-course d-flex align-items-center" value="{{ $document->id }}" data-lesson-id="{{ $lesson->id }}" data-toggle="modal"><i class="faws fas fa-trash text-danger" data-toggle="tooltip" data-original-title="Delete"></i></a>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -199,4 +200,27 @@
             </div>
         </div>
     </div>
+    <div id="deleteDocumentModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="deleteDocumentForm" action="" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-header">						
+                        <div class="modal-title">Delete Document</div>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="faws fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">					
+                        <div>Are you sure you want to delete these Records?</div>
+                        <div class="text-warning"><small>This action cannot be undone.</small></div>
+                    </div>
+                    <div class="modal-footer">
+                        <input hidden="true" name="course_id" class="value-id">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    
 @endsection

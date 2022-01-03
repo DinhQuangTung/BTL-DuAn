@@ -54,4 +54,11 @@ class DocumentController extends Controller
 
         return view('Documents.index', compact('document', 'lesson', 'course'));
     }
+
+    public function destroy(Lesson $lesson, Document $document)
+    {
+        $document->delete();
+
+        return redirect()->route('course.lessons.show', [$lesson->course, $lesson])->with('success', 'Delete the document successfully');
+    }
 }

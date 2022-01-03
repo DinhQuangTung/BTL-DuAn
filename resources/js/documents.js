@@ -20,5 +20,11 @@ $(function () {
       }
     })
   });
-  
 });
+
+$('.delete-document').on('click', function () {
+  $('#deleteDocumentForm').attr('action', 'http://127.0.0.1:8000/lessons/' + $(this).attr('data-lesson-id') + '/documents/' + $(this).attr('value'));
+  // alert($('#deleteDocumentForm').attr('action'));
+  // alert($(this).attr('data-lesson-id'));
+});
+  
