@@ -2,7 +2,7 @@
     <div class="row">
         <div class="teacher-item-title d-flex align-items-center">
             <div class="teacher-avatar">
-                <img src="{{$teacher->avatar}}" alt="teacher-avatar">
+                <img src="{{ asset($teacher->avatar) }}" alt="teacher-avatar">
             </div>
             <div class="teacher-info d-flex flex-column">
                 <div class="teacher-name">{{ $teacher->name}}</div>
