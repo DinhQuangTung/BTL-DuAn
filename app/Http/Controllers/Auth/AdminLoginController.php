@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\JsonResponse;
 
 class AdminLoginController extends Controller
 {
@@ -38,10 +40,12 @@ class AdminLoginController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        auth()->logout();
-        
-        return redirect()->route('admin.show_login')->with('success', "Logout successfully!");
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return $request->wantsJson() ? new JsonResponse([], 204) : redirect('/admin/login');
     }
 }

@@ -866,6 +866,18 @@
   }
 }
 
+.feedback-slider-comment .slide-feedback-comment {
+  height: 155px;
+}
+
+.feedback-slider-comment .slide-feedback-comment p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  height: 100px;
+}
+
 .feedback-slider-comment {
   margin: 50px 0;
 
@@ -1113,7 +1125,7 @@
     .btn {
       width: 377px;
       height: 70px;
-      margin-top: 25px;
+      margin-top: 45px;
       font-size: 30px;
       line-height: 37px;
       font-weight: bold;
