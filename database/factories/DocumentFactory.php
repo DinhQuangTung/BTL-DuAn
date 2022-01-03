@@ -26,9 +26,11 @@ class DocumentFactory extends Factory
         return [
             'lesson_id' => $this->faker->randomDigit(),
             'name' => $arrayName[$randIndex],
-            'type' => $randIndex,
+            'type' => 'pdf',
             'logo_path' => 'img/pdf-icon.png',
-            'file_path' => "https://s3.ap-southeast-1.amazonaws.com/uetlearn-documents/documents/AjOzjW9n3XhuhrNpzL7moEF0GVlt8Q4dJa61qYQC.pdf",
+            // 'video_path' => 'https://s3.ap-southeast-1.amazonaws.com/uetlearn-documents/documents/gytDhPQoKSNNaRepnM2WKdNqLz6AdWgL5K65KXPb.mp4'
+            'file_path' => 'https://s3.ap-southeast-1.amazonaws.com/uetlearn-documents/documents/k2BYCFmuMkL8Bw1tCo1x6dcnhDUbHeDCCmbXSLe7.pdf'
+            // 'file_path' => "https://s3.ap-southeast-1.amazonaws.com/uetlearn-documents/documents/AjOzjW9n3XhuhrNpzL7moEF0GVlt8Q4dJa61qYQC.pdf",
         ];
     }
 }

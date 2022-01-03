@@ -31,7 +31,7 @@ class TagSeeder extends Seeder
             ->count(3)->state(function (array $attributes, Course $course) {
                 return ['course_id' => $course->id];
             }))
-            ->count(30))
+            ->count(500))
         ->state([
             'name' => '#css',
         ])->create();

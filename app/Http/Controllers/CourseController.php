@@ -18,7 +18,7 @@ class CourseController extends Controller
     {
         $teachers = User::where('role', config('config.role.teacher'))->get();
         $courses = Course::where('course_status', true)->filter($request)->paginate(config('config.pagination'));
-        $tags = Tag::get();
+        $tags = Tag::all();
 
         return view('courses.index', compact('courses', 'teachers', 'tags'));
     }

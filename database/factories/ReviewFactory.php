@@ -24,7 +24,7 @@ class ReviewFactory extends Factory
     public function definition()
     {
         $courseId = Course::where('course_status', 1)->pluck('id')->toArray();
-        $userId = User::all()->pluck('id')->toArray();
+        $userId = User::where('role', '<>' , 2)->pluck('id')->toArray();
         return [
             'user_id' => $userId[array_rand($userId, 1)],
             'course_id' => $courseId[array_rand($courseId, 1)],
