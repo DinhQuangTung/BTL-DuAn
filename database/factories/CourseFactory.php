@@ -22,7 +22,7 @@ class CourseFactory extends Factory
      */
     public function definition()
     {
-        $userId = User::all()->pluck('id')->toArray();
+        $userId = User::where('role', 1)->pluck('id')->toArray();
         return [
             'title' => $this->faker->name(),
             'teacher_id' => $userId[array_rand($userId, 1)],
@@ -30,6 +30,7 @@ class CourseFactory extends Factory
             'description' => $this->faker->realText(),
             'price' => mt_rand(100, 300),
             'learn_times' => mt_rand(100, 1000),
+            'course_status' => rand(0, 1)
         ];
     }
 }

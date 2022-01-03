@@ -25,7 +25,7 @@ class UpdateImageLessonsTable extends Migration
      */
     public function down()
     {
-        Scheme::table('lessons', function (Blueprint $table) {
+        Schema::table('lessons', function (Blueprint $table) {
             $table->dropColumn('image');
         });
     }
