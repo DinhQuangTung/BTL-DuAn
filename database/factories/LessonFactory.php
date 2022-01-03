@@ -32,6 +32,7 @@ class LessonFactory extends Factory
             'content' => $this->faker->realText(),
             'learn_time' => rand(1, 4),
             'course_id' => mt_rand(1, count($coursesId)),
+            'image' => 'https://s3.ap-southeast-1.amazonaws.com/uetlearn-documents/images/AeBX39ZZmBwHdRNVJaj3t1ALcDpCjUEZoy6gZkgt.jpg'
         ];
     }
 }

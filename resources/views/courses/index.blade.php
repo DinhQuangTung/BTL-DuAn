@@ -100,7 +100,7 @@
                         </div>
 
                         <div class="col-lg-2 pl-xl-0 mb-2">
-                            <div class="reset-filter" id="resetFilter">Reset</div>
+                            <a href="{{ route('courses.index') }}" class="reset-filter" id="resetFilter">Reset</a>
                         </div>
                     </div>
                 </div>

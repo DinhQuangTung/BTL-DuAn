@@ -130,7 +130,7 @@
                                     @foreach ($course->tags as $tag)
                                         <form action="{{ route('courses.index') }}" method="GET">
                                             <input type="text" class="d-none" name="tag" value="{{ $tag->id }}">
-                                            <button type="submit" class="random-tag-name p-0 mr-1">#{{ $tag->name }}</button>
+                                            <button type="submit" class="random-tag-name p-0 mr-1">{{ $tag->name }}</button>
                                         </form>
                                     @endforeach
 {{--                                    @if (!empty(Auth::user()) && Auth::user()->role == 1 && Auth::id() == $course->teacher_id)--}}
