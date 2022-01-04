@@ -20,7 +20,7 @@
                 <div class="col-md-6 mt-3">
                     <div class="form-group">
                         <label for="lessonRequirement" class="course-label">Requirement <span style="color: red;">*</span></label>
-                        <textarea type="number" name="lesson_requirement" rows="3" class="form-control" id="lessonRequirement" value="" required></textarea>
+                        <textarea type="text" name="lesson_requirement" rows="3" class="form-control" id="lessonRequirement" value="" required></textarea>
                         @error('lesson_requirement')
                             <span class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
