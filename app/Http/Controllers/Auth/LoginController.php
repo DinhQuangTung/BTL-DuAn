@@ -112,7 +112,7 @@ class LoginController extends Controller
                 return redirect()->route('home')->with('success', 'Successfully login!');
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
         }
     }
 }
